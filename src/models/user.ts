@@ -33,38 +33,33 @@ export class User extends Entity {
 
     @property({
         type: "string",
-        id: true
     })
     email: string;
 
     @property({
         type: "string",
-        id: true
     })
     imageUrl: string;
 
     @property({
         type: "string",
-        id: true
     })
     payment: string;
 
     @property({
         type: "string",
-        id: true
     })
     password: string;
     
     @property({
-        type: "array<order>",
-        id: true
+        type: "order",
     })
-    orderhistory: Array<Order>;
+    orderhistory: Order;
 
     @property({
-        type: "array<item>",
+        type: "item",
     })
-    cart: Array<Item>;
+    cart: Item;
 
 
 }
