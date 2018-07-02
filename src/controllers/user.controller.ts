@@ -19,7 +19,7 @@ export class UserController {
   @get("/users")
   async getAllUsers(
     @param.query.string("username") username: string
-  ): Promise<Array<any>> {
+  ): Promise<Array<User>> {
     return await this.userRepo.find();
   }
 
@@ -27,15 +27,9 @@ export class UserController {
   getSpecificUser(
     @param.path.string("userId") userId: string
   ): any {
-    if (userId == "A") {
-      return "ABC";
-    }
-
-    if (userId == "B") {
-      return "BCD";
-    }
 
     return "Not found";
+    
   }
 
   @post("/users")

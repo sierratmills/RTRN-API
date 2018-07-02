@@ -33,7 +33,25 @@ export class User extends Entity {
         type: "string",
         id: true
     })
+    email: string;
+
+    @property({
+        type: "string",
+        id: true
+    })
     imageUrl: string;
+
+    @property({
+        type: "string",
+        id: true
+    })
+    payment: string;
+
+    @property({
+        type: "string",
+        id: true
+    })
+    password: string;
 
 
 }
