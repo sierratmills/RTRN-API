@@ -1,12 +1,12 @@
 import { property, Entity, model } from "@loopback/repository";
 import { User } from "./user";
+import { Item } from "./item";
 
 @model({
     name: "order"
 })
 
 export class Order extends Entity {
-
     @property({
         type: "user",
         id: true
@@ -14,28 +14,29 @@ export class Order extends Entity {
     user: User;
 
     @property({
-        type: "string"
+        type: "array<items>",
     })
-    items: Array<string>;
+    items: Array<Item>;
 
     @property({
-        type: "string"
+        type: "string",
     })
     orderNumber: string;
 
     @property({
-        type: "string"
+        type: "string",
     })
-    address: string;   
-    
+    address: string;
+
     @property({
-        type: "string"
+        type: "string",
     })
     payment: string;
 
     @property({
-        type: "string"
+        type: "string",
     })
     receipt: string;
+
 
 }

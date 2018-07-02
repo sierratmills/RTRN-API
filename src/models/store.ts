@@ -1,4 +1,5 @@
 import { property, Entity, model } from "@loopback/repository";
+import { Item } from "./item";
 
 @model({
     name: "store"
@@ -13,45 +14,38 @@ export class Store extends Entity {
 
     @property({
         type: "string",
-        id: true
     })
     storeName: string;
 
     @property({
         type: "string",
-        id: true
     })
     storeType: string;
 
     @property({
         type: "string",
-        id: true
     })
     address: string;
 
     @property({
         type: "string",
-        id: true
     })
     storeUrl: string;
 
     @property({
         type: "string",
-        id: true
     })
     lat: string;
 
     @property({
         type: "string",
-        id: true
     })
     long: string;
 
     @property({
-        type: "string",
-        id: true
+        type: "array<item>",
     })
-    products: Array<string>;
+    products: Array<Item>;
 
 
 }

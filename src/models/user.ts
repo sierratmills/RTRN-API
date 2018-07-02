@@ -1,5 +1,6 @@
 import { property, Entity, model } from "@loopback/repository";
 import { Order } from "./order";
+import { Item } from "./item";
 
 @model({
     name: "user"
@@ -55,10 +56,15 @@ export class User extends Entity {
     password: string;
     
     @property({
-        type: "string",
+        type: "array<order>",
         id: true
     })
     orderhistory: Array<Order>;
+
+    @property({
+        type: "array<item>",
+    })
+    cart: Array<Item>;
 
 
 }
