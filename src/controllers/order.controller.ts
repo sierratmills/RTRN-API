@@ -1,7 +1,6 @@
 import { get, param, requestBody, post } from "@loopback/rest";
 import { repository } from "@loopback/repository";
 import { OrderRepository } from "../repositories/Order.repository";
-import { Class, Repository, RepositoryMixin, juggler } from '@loopback/repository';
 import { Order } from "../models/Order";
 
 
@@ -27,7 +26,7 @@ export class OrderController {
   getSpecificOrder(
     @param.path.string("orderId") orderId: string
   ): any {
-
+    let orderArr = this.getAllOrders;
     return "Not found";
 
   }

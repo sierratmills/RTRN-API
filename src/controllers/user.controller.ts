@@ -18,19 +18,22 @@ export class UserController {
 
   @get("/users")
   async getAllUsers(
-    @param.query.string("username") username: string
   ): Promise<Array<User>> {
     return await this.userRepo.find();
   }
 
-  @get("/user/userid")
-  getSpecificUser(
+  @get("/user/{userid}")
+  async getSpecificUser(
     @param.path.string("userId") userId: string
-  ): any {
 
-
-    return "Not found";
-
+  ): Promise<any> {
+    var userArr = await this.getAllUsers();
+    for (var i = 0; i < userArr.length; i++) {
+      var current = userArr[i];
+      if (current.username == userId) {
+        return current;
+      }
+    }
   }
 
   @post("/users")
