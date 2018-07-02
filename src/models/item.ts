@@ -1,4 +1,4 @@
-import { model, property, Entity } from "@loopback/repository";
+import { model, property, Entity, Order } from "@loopback/repository";
 import { Store } from "./store";
 import { User } from "./user";
 import { List } from "./list";
@@ -53,5 +53,5 @@ export class Item extends Entity {
   @property({
     type: "Array<Order>"
   })
-  orders: string;
+  orders: Array<Order>;
 }
