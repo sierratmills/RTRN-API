@@ -1,7 +1,7 @@
 import { get, param, requestBody, post } from "@loopback/rest";
-import { repository, Order } from "@loopback/repository";
+import { repository } from "@loopback/repository";
 import { OrderRepository } from "../repositories/Order.repository";
-import { Class, Repository, RepositoryMixin, juggler} from'@loopback/repository';
+import { Class, Repository, RepositoryMixin, juggler } from '@loopback/repository';
 import { Order } from "../models/Order";
 
 
@@ -14,7 +14,7 @@ export class OrderController {
 
   constructor(
     @repository(OrderRepository.name) private orderRepo: OrderRepository
-  ) {}
+  ) { }
 
   @get("/orders")
   async getAllOrders(
@@ -29,12 +29,12 @@ export class OrderController {
   ): any {
 
     return "Not found";
-    
+
   }
 
   @post("/orders")
   async createOrder(
-    @requestBody() order : Order
+    @requestBody() order: Order
   ): Promise<Order> {
     let createdOrder = await this.orderRepo.create(order);
     return createdOrder;
