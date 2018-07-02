@@ -15,56 +15,48 @@ export class User extends Entity {
 
     @property({
         type: "string",
-        id: true
     })
     userName: string;
 
     @property({
         type: "string",
-        id: true
     })
     firstName: string;
 
     @property({
         type: "string",
-        id: true
     })
     lastName: string;
 
     @property({
         type: "string",
-        id: true
     })
     email: string;
 
     @property({
         type: "string",
-        id: true
     })
     imageUrl: string;
 
     @property({
         type: "string",
-        id: true
     })
     payment: string;
 
     @property({
         type: "string",
-        id: true
     })
     password: string;
-    
-    @property({
-        type: "array<order>",
-        id: true
-    })
-    orderhistory: Array<Order>;
 
     @property({
-        type: "array<item>",
+        type: "order",
     })
-    cart: Array<Item>;
+    orderhistory: Order;
+
+    @property({
+        type: "item",
+    })
+    cart: Item;
 
 
 }

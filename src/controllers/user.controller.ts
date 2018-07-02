@@ -1,7 +1,7 @@
 import { get, param, requestBody, post } from "@loopback/rest";
 import { repository } from "@loopback/repository";
 import { UserRepository } from "../repositories/user.repository";
-import { Class, Repository, RepositoryMixin, juggler} from'@loopback/repository';
+import { Class, Repository, RepositoryMixin, juggler } from '@loopback/repository';
 import { User } from "../models/user";
 
 
@@ -14,7 +14,7 @@ export class UserController {
 
   constructor(
     @repository(UserRepository.name) private userRepo: UserRepository
-  ) {}
+  ) { }
 
   @get("/users")
   async getAllUsers(
@@ -28,13 +28,14 @@ export class UserController {
     @param.path.string("userId") userId: string
   ): any {
 
+
     return "Not found";
-    
+
   }
 
   @post("/users")
   async createUser(
-    @requestBody() user : User
+    @requestBody() user: User
   ): Promise<User> {
     let createdUser = await this.userRepo.create(user);
     return createdUser;

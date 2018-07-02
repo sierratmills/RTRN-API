@@ -43,9 +43,9 @@ export class Store extends Entity {
     long: string;
 
     @property({
-        type: "array<item>",
+        type: "item",
     })
-    products: Array<Item>;
+    products: Item;
 
 
 }
