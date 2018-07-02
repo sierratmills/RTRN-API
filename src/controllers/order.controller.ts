@@ -1,8 +1,8 @@
 import { get, param, requestBody, post } from "@loopback/rest";
-import { repository, Order } from "@loopback/repository";
+import { repository} from "@loopback/repository";
 import { OrderRepository } from "../repositories/Order.repository";
-import { Class, Repository, RepositoryMixin, juggler} from'@loopback/repository';
-import { Order } from "../models/Order";
+import { Order } from "../models/order";
+
 
 
 // Uncomment these imports to begin using these cool features!
