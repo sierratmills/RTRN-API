@@ -14,29 +14,29 @@ export class LoginController {
 
   constructor(
     @repository(UserRepository) protected userRepo: UserRepository,
-  ) {}
+  ) { }
 
   @get("/login")
   async loginUser(@requestBody() user: User
   ): Promise<User> {
     if (!this.userRepo.count({
-        and: [
-            { email: user.email },
-            { password: user.password },
-        ],
+      and: [
+        { email: user.email },
+        { password: user.password },
+      ],
     })) {
-        throw new HttpErrors.Unauthorized('invalid information');
+      throw new HttpErrors.Unauthorized('invalid information');
     }
 
-    return await user;
-    /*return await this.userRepo.findOne({
-        where: {
-          and: [
-            { email: user.email },
-            { password: user.password }
-          ],
-        },
-      });
-    }*/
+    //return await user;
+    return await this.userRepo.findOne({
+      where: {
+        and: [
+          { email: user.email },
+          { password: user.password }
+        ],
+      },
+    }) as User;
   }
 }
+

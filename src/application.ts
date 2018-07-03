@@ -1,10 +1,10 @@
-import {ApplicationConfig} from '@loopback/core';
-import {RestApplication, RestServer, RestBindings} from '@loopback/rest';
-import {MySequence} from './sequence';
+import { ApplicationConfig } from '@loopback/core';
+import { RestApplication, RestServer, RestBindings } from '@loopback/rest';
+import { MySequence } from './sequence';
 
 /* tslint:disable:no-unused-variable */
 // Binding and Booter imports are required to infer types for BootMixin!
-import {BootMixin, Booter, Binding} from '@loopback/boot';
+import { BootMixin, Booter, Binding } from '@loopback/boot';
 import {
   Class,
   Repository,
@@ -13,7 +13,7 @@ import {
 } from '@loopback/repository';
 /* tslint:enable:no-unused-variable */
 
-export class Day_6Application extends BootMixin(
+export class RTRNAPIApplication extends BootMixin(
   RepositoryMixin(RestApplication)
 ) {
   constructor(options?: ApplicationConfig) {
@@ -41,7 +41,8 @@ export class Day_6Application extends BootMixin(
       port: 3306,
       database: 'RTRN',
       user: 'root',
-      password: 'qwerty123'
+      password: ''
+
     });
     this.dataSource(dataSourceConfig);
   }
