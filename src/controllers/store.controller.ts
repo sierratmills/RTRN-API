@@ -13,7 +13,7 @@ export class StoreController {
 
   constructor(
     @repository(StoreRepository.name) private userRepo: StoreRepository
-  ) {}
+  ) { }
 
   @get("/stores")
   async getAllStores(
@@ -28,14 +28,14 @@ export class StoreController {
   ): any {
 
     return "Not found";
-    
+
   }
 
   @post("/stores")
-  async createUser(
-    @requestBody() store : Store
+  async createStore(
+    @requestBody() store: Store
   ): Promise<Store> {
-    let createdUser = await this.userRepo.create(store);
-    return createdUser;
+    let createdStore = await this.userRepo.create(store);
+    return createdStore;
   }
 }

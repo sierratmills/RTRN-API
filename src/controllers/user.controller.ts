@@ -1,7 +1,7 @@
 import { get, param, requestBody, post, HttpErrors } from "@loopback/rest";
 import { repository } from "@loopback/repository";
 import { UserRepository } from "../repositories/user.repository";
-import { Class, Repository, RepositoryMixin, juggler} from'@loopback/repository';
+import { Class, Repository, RepositoryMixin, juggler } from '@loopback/repository';
 import { User } from "../models/user";
 
 
@@ -14,7 +14,7 @@ export class UserController {
 
   constructor(
     @repository(UserRepository.name) private userRepo: UserRepository
-  ) {}
+  ) { }
 
   @get("/users")
   async getAllUsers(
@@ -25,9 +25,10 @@ export class UserController {
   @get("/user/{userid}")
   async getSpecificUser(
     @param.path.string("userId") userId: string
+
   ): Promise<any> {
     var userArr = await this.getAllUsers();
-    for (var i =  0; i < userArr.length; i++) {
+    for (var i = 0; i < userArr.length; i++) {
       var current = userArr[i];
       if (current.username == userId) {
         return current;

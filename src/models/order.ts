@@ -14,9 +14,9 @@ export class Order extends Entity {
     user: User;
 
     @property({
-        type: "array<items>",
+        type: "item",
     })
-    items: Array<Item>;
+    items: Item;
 
     @property({
         type: "string",

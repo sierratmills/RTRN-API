@@ -41,17 +41,17 @@ export class Item extends Entity {
   image: string;
 
   @property({
-    type: "Array<User>"
+    type: "User"
   })
-  carts: Array<User>;
+  carts: User;
 
   @property({
-    type: "Array<List>"
+    type: "list"
   })
-  lists: Array<List>;
+  lists: List;
 
   @property({
-    type: "Array<Order>"
+    type: "order"
   })
-  orders: Array<Order>;
+  orders: Order;
 }

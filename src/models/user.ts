@@ -15,19 +15,16 @@ export class User extends Entity {
 
     @property({
         type: "string",
-        id: true
     })
     userName: string;
 
     @property({
         type: "string",
-        id: true
     })
     firstName: string;
 
     @property({
         type: "string",
-        id: true
     })
     lastName: string;
 
@@ -50,7 +47,7 @@ export class User extends Entity {
         type: "string",
     })
     password: string;
-    
+
     @property({
         type: "order",
     })
