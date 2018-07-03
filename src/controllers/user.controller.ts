@@ -1,4 +1,4 @@
-import { get, param, requestBody, post } from "@loopback/rest";
+import { get, param, requestBody, post, HttpErrors } from "@loopback/rest";
 import { repository } from "@loopback/repository";
 import { UserRepository } from "../repositories/user.repository";
 import { Class, Repository, RepositoryMixin, juggler} from'@loopback/repository';
@@ -35,11 +35,16 @@ export class UserController {
     }
   }
 
-  @post("/users")
-  async createUser(
+  @post("/register")
+  async registerUser(
     @requestBody() user : User
   ): Promise<User> {
-    let createdUser = await this.userRepo.create(user);
-    return createdUser;
+    if (!user.email || !user.password || !user.email) {
+      throw new HttpErrors.BadRequest('user is missing data');
+    }
+    if (this.userRepo.count({ email : user.email})) {
+      throw new HttpErrors.BadRequest('user already exists');
+    }
+    return await this.userRepo.create(user);
   }
 }

@@ -1,7 +1,8 @@
-import { get, param, requestBody, post } from "@loopback/rest";
+import { get, param, requestBody, post, HttpErrors } from "@loopback/rest";
 import { repository } from "@loopback/repository";
 import { UserRepository } from "../repositories/user.repository";
 import { UserController } from "./user.controller";
+import { User } from "../models/user";
 
 
 // Uncomment these imports to begin using these cool features!
@@ -12,28 +13,30 @@ import { UserController } from "./user.controller";
 export class LoginController {
 
   constructor(
-    @repository(UserRepository.name) private userRepo: UserRepository
+    @repository(UserRepository) protected userRepo: UserRepository,
   ) {}
 
-  @get("/user/{userid}")
-  async checkValidUser(
-    @param.path.string("username") name: string,
-    @param.path.string("passcode") passcode: string
-  ): Promise<boolean> {
-    var userArr = await UserController.prototype.getAllUsers();
-    for (var i =  0; i < userArr.length; i++) {
-      var current = userArr[i];
-      if (current.username == name) {
-        if (current.password == passcode) {
-            return true;
-        }
-        else {
-            return false;
-        }
-      }
+  @get("/login")
+  async loginUser(@requestBody() user: User
+  ): Promise<User> {
+    if (!this.userRepo.count({
+        and: [
+            { email: user.email },
+            { password: user.password },
+        ],
+    })) {
+        throw new HttpErrors.Unauthorized('invalid information');
     }
-    return false;
+
+    return await user;
+    /*return await this.userRepo.findOne({
+        where: {
+          and: [
+            { email: user.email },
+            { password: user.password }
+          ],
+        },
+      });
+    }*/
   }
-
-
 }
