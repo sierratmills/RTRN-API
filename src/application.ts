@@ -5,9 +5,17 @@ import {MySequence} from './sequence';
 /* tslint:disable:no-unused-variable */
 // Binding and Booter imports are required to infer types for BootMixin!
 import {BootMixin, Booter, Binding} from '@loopback/boot';
+import {
+  Class,
+  Repository,
+  RepositoryMixin,
+  juggler
+} from '@loopback/repository';
 /* tslint:enable:no-unused-variable */
 
-export class GoldenThreadApiApplication extends BootMixin(RestApplication) {
+export class Day_6Application extends BootMixin(
+  RepositoryMixin(RestApplication)
+) {
   constructor(options?: ApplicationConfig) {
     super(options);
 
@@ -24,6 +32,18 @@ export class GoldenThreadApiApplication extends BootMixin(RestApplication) {
         nested: true,
       },
     };
+
+    // Use below for an in-memory database
+    var dataSourceConfig = new juggler.DataSource({
+      name: "db",
+      connector: 'loopback-connector-mysql',
+      host: 'localhost',
+      port: 3306,
+      database: 'RTRN',
+      user: 'root',
+      password: 'qwerty123'
+    });
+    this.dataSource(dataSourceConfig);
   }
 
   async start() {
