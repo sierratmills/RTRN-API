@@ -1,6 +1,4 @@
 import { property, Entity, model } from "@loopback/repository";
-import { Order } from "./order";
-import { Item } from "./item";
 
 @model({
     name: "user"
@@ -16,17 +14,17 @@ export class User extends Entity {
     @property({
         type: "string",
     })
-    userName: string;
+    username: string;
 
     @property({
         type: "string",
     })
-    firstName: string;
+    firstname: string;
 
     @property({
         type: "string",
     })
-    lastName: string;
+    lastname: string;
 
     @property({
         type: "string",
@@ -36,7 +34,7 @@ export class User extends Entity {
     @property({
         type: "string",
     })
-    imageUrl: string;
+    image: string;
 
     @property({
         type: "string",
@@ -47,16 +45,6 @@ export class User extends Entity {
         type: "string",
     })
     password: string;
-
-    @property({
-        type: "number",
-    })
-    orderhistoryId: number;
-
-    @property({
-        type: "number",
-    })
-    cartId: number;
 
 
 }

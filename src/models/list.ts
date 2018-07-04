@@ -1,6 +1,4 @@
 import { model, property, Entity } from "@loopback/repository";
-import { User } from "./user";
-import { Item } from "./item";
 
 @model({
   name: "list"
@@ -9,10 +7,10 @@ import { Item } from "./item";
 export class List extends Entity {
 
   @property({
-    type: "string",
+    type: "number",
     id: true
   })
-  listname: string;
+  idlist: number;
 
   @property({
     type: "number"
@@ -20,7 +18,7 @@ export class List extends Entity {
   userId: number;
 
   @property({
-    type: "number"
+    type: "string",
   })
-  itemId: number;
+  name: string;
 }
