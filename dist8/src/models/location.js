@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
-let Store = class Store extends repository_1.Entity {
+let location = class location extends repository_1.Entity {
 };
 __decorate([
     repository_1.property({
@@ -18,29 +18,41 @@ __decorate([
         id: true
     }),
     __metadata("design:type", Number)
-], Store.prototype, "idstore", void 0);
+], location.prototype, "idlocation", void 0);
 __decorate([
     repository_1.property({
         type: "string",
     }),
     __metadata("design:type", String)
-], Store.prototype, "storename", void 0);
+], location.prototype, "street", void 0);
 __decorate([
     repository_1.property({
         type: "string",
     }),
     __metadata("design:type", String)
-], Store.prototype, "storetype", void 0);
+], location.prototype, "city", void 0);
 __decorate([
     repository_1.property({
         type: "string",
     }),
     __metadata("design:type", String)
-], Store.prototype, "url", void 0);
-Store = __decorate([
+], location.prototype, "lat", void 0);
+__decorate([
+    repository_1.property({
+        type: "string",
+    }),
+    __metadata("design:type", String)
+], location.prototype, "long", void 0);
+__decorate([
+    repository_1.property({
+        type: "number",
+    }),
+    __metadata("design:type", Number)
+], location.prototype, "storeid", void 0);
+location = __decorate([
     repository_1.model({
-        name: "store"
+        name: "location"
     })
-], Store);
-exports.Store = Store;
-//# sourceMappingURL=store.js.map
+], location);
+exports.location = location;
+//# sourceMappingURL=location.js.map

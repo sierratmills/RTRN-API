@@ -24,19 +24,19 @@ __decorate([
         type: "string",
     }),
     __metadata("design:type", String)
-], User.prototype, "userName", void 0);
+], User.prototype, "username", void 0);
 __decorate([
     repository_1.property({
         type: "string",
     }),
     __metadata("design:type", String)
-], User.prototype, "firstName", void 0);
+], User.prototype, "firstname", void 0);
 __decorate([
     repository_1.property({
         type: "string",
     }),
     __metadata("design:type", String)
-], User.prototype, "lastName", void 0);
+], User.prototype, "lastname", void 0);
 __decorate([
     repository_1.property({
         type: "string",
@@ -48,7 +48,7 @@ __decorate([
         type: "string",
     }),
     __metadata("design:type", String)
-], User.prototype, "imageUrl", void 0);
+], User.prototype, "image", void 0);
 __decorate([
     repository_1.property({
         type: "string",
@@ -61,18 +61,6 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
-__decorate([
-    repository_1.property({
-        type: "number",
-    }),
-    __metadata("design:type", Number)
-], User.prototype, "orderhistoryId", void 0);
-__decorate([
-    repository_1.property({
-        type: "number",
-    }),
-    __metadata("design:type", Number)
-], User.prototype, "cartId", void 0);
 User = __decorate([
     repository_1.model({
         name: "user"

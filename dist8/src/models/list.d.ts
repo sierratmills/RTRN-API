@@ -1,6 +1,6 @@
 import { Entity } from "@loopback/repository";
 export declare class List extends Entity {
-    listname: string;
+    idlist: number;
     userId: number;
-    itemId: number;
+    name: string;
 }
