@@ -11,57 +11,53 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(require("./ping.controller"));
-__export(require("./user.controller"));
 const rest_1 = require("@loopback/rest");
 const repository_1 = require("@loopback/repository");
-const Item_repository_1 = require("../repositories/Item.repository");
-const Item_1 = require("../models/Item");
+const Order_repository_1 = require("../repositories/Order.repository");
+const Order_1 = require("../models/Order");
 // Uncomment these imports to begin using these cool features!
 // import {inject} from '@loopback/context';
-let ItemController = class ItemController {
-    constructor(itemRepo) {
-        this.itemRepo = itemRepo;
+let OrderController = class OrderController {
+    constructor(orderRepo) {
+        this.orderRepo = orderRepo;
     }
-    async getAllItems(ordername) {
-        return await this.itemRepo.find();
+    async getAllOrders(ordername) {
+        return await this.orderRepo.find();
     }
-    getSpecificItem(itemname) {
+    getSpecificOrder(orderId) {
+        let orderArr = this.getAllOrders;
         return "Not found";
     }
-    async createItem(item) {
-        let createdItem = await this.itemRepo.create(item);
-        return createdItem;
+    async createOrder(order) {
+        let createdOrder = await this.orderRepo.create(order);
+        return createdOrder;
     }
 };
 __decorate([
-    rest_1.get("/items"),
-    __param(0, rest_1.param.query.string("itemId")),
+    rest_1.get("/orders"),
+    __param(0, rest_1.param.query.string("orderId")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], ItemController.prototype, "getAllItems", null);
+], OrderController.prototype, "getAllOrders", null);
 __decorate([
-    rest_1.get("/item/itemname"),
-    __param(0, rest_1.param.path.string("itemname")),
+    rest_1.get("/order/orderid"),
+    __param(0, rest_1.param.path.string("orderId")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Object)
-], ItemController.prototype, "getSpecificItem", null);
+], OrderController.prototype, "getSpecificOrder", null);
 __decorate([
-    rest_1.post("/item"),
+    rest_1.post("/orders"),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Item_1.Item]),
+    __metadata("design:paramtypes", [Order_1.Order]),
     __metadata("design:returntype", Promise)
-], ItemController.prototype, "createItem", null);
-ItemController = __decorate([
-    __param(0, repository_1.repository(Item_repository_1.ItemRepository.name)),
-    __metadata("design:paramtypes", [Item_repository_1.ItemRepository])
-], ItemController);
-exports.ItemController = ItemController;
-//# sourceMappingURL=index.js.map
+], OrderController.prototype, "createOrder", null);
+OrderController = __decorate([
+    __param(0, repository_1.repository(Order_repository_1.OrderRepository.name)),
+    __metadata("design:paramtypes", [Order_repository_1.OrderRepository])
+], OrderController);
+exports.OrderController = OrderController;
+//# sourceMappingURL=order.controller.js.map

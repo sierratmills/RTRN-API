@@ -13,7 +13,7 @@ import {
 } from '@loopback/repository';
 /* tslint:enable:no-unused-variable */
 
-export class RTRNAPIApplication extends BootMixin(
+export class RTRNApiApplication extends BootMixin(
   RepositoryMixin(RestApplication)
 ) {
   constructor(options?: ApplicationConfig) {

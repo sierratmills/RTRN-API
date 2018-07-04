@@ -5,8 +5,9 @@ const sequence_1 = require("./sequence");
 /* tslint:disable:no-unused-variable */
 // Binding and Booter imports are required to infer types for BootMixin!
 const boot_1 = require("@loopback/boot");
+const repository_1 = require("@loopback/repository");
 /* tslint:enable:no-unused-variable */
-class GoldenThreadApiApplication extends boot_1.BootMixin(rest_1.RestApplication) {
+class RTRNApiApplication extends boot_1.BootMixin(repository_1.RepositoryMixin(rest_1.RestApplication)) {
     constructor(options) {
         super(options);
         // Set up the custom sequence
@@ -21,6 +22,17 @@ class GoldenThreadApiApplication extends boot_1.BootMixin(rest_1.RestApplication
                 nested: true,
             },
         };
+        // Use below for an in-memory database
+        var dataSourceConfig = new repository_1.juggler.DataSource({
+            name: "db",
+            connector: 'loopback-connector-mysql',
+            host: 'localhost',
+            port: 3306,
+            database: 'RTRN',
+            user: 'root',
+            password: ''
+        });
+        this.dataSource(dataSourceConfig);
     }
     async start() {
         await super.start();
@@ -30,5 +42,5 @@ class GoldenThreadApiApplication extends boot_1.BootMixin(rest_1.RestApplication
         console.log(`Try http://127.0.0.1:${port}/ping`);
     }
 }
-exports.GoldenThreadApiApplication = GoldenThreadApiApplication;
+exports.RTRNApiApplication = RTRNApiApplication;
 //# sourceMappingURL=application.js.map

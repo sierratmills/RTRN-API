@@ -1,4 +1,4 @@
-import { GoldenThreadApiApplication } from './application';
+import { RTRNApiApplication } from './application';
 import { ApplicationConfig } from '@loopback/core';
-export { GoldenThreadApiApplication };
-export declare function main(options?: ApplicationConfig): Promise<GoldenThreadApiApplication>;
+export { RTRNApiApplication };
+export declare function main(options?: ApplicationConfig): Promise<RTRNApiApplication>;

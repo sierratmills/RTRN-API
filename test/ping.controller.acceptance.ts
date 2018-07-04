@@ -1,9 +1,9 @@
-import {createClientForHandler, supertest} from '@loopback/testlab';
-import {RestServer} from '@loopback/rest';
-import {GoldenThreadApiApplication} from '../';
+import { createClientForHandler, supertest } from '@loopback/testlab';
+import { RestServer } from '@loopback/rest';
+import { RTRNApiApplication } from '../';
 
 describe('PingController', () => {
-  let app: GoldenThreadApiApplication;
+  let app: RTRNApiApplication;
   let server: RestServer;
   let client: supertest.SuperTest<supertest.Test>;
 
@@ -29,7 +29,7 @@ describe('PingController', () => {
   });
 
   function givenAnApplication() {
-    app = new GoldenThreadApiApplication({
+    app = new RTRNApiApplication({
       rest: {
         port: 0,
       },
