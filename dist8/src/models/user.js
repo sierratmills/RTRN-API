@@ -10,8 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
-const order_1 = require("./order");
-const item_1 = require("./item");
 let User = class User extends repository_1.Entity {
 };
 __decorate([
@@ -65,16 +63,16 @@ __decorate([
 ], User.prototype, "password", void 0);
 __decorate([
     repository_1.property({
-        type: "order",
+        type: "number",
     }),
-    __metadata("design:type", order_1.Order)
-], User.prototype, "orderhistory", void 0);
+    __metadata("design:type", Number)
+], User.prototype, "orderhistoryId", void 0);
 __decorate([
     repository_1.property({
-        type: "item",
+        type: "number",
     }),
-    __metadata("design:type", item_1.Item)
-], User.prototype, "cart", void 0);
+    __metadata("design:type", Number)
+], User.prototype, "cartId", void 0);
 User = __decorate([
     repository_1.model({
         name: "user"

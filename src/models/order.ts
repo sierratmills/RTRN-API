@@ -8,15 +8,15 @@ import { Item } from "./item";
 
 export class Order extends Entity {
     @property({
-        type: "user",
+        type: "number",
         id: true
     })
-    user: User;
+    userId: number;
 
     @property({
-        type: "item",
+        type: "number",
     })
-    items: Item;
+    itemId: number;
 
     @property({
         type: "string",

@@ -1,15 +1,13 @@
-import { Entity, Order } from "@loopback/repository";
-import { Store } from "./store";
+import { Entity } from "@loopback/repository";
 import { User } from "./user";
-import { List } from "./list";
 export declare class Item extends Entity {
     itemname: string;
     itemtype: string;
     price: string;
     URL: string;
-    store: Store;
+    storeId: number;
     image: string;
     carts: User;
-    lists: List;
-    orders: Order;
+    listId: number;
+    ordersId: number;
 }

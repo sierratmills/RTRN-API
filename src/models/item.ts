@@ -31,9 +31,9 @@ export class Item extends Entity {
   URL: string;
 
   @property({
-    type: "Store"
+    type: "number"
   })
-  store: Store;
+  storeId: number;
 
   @property({
     type: "string"
@@ -46,12 +46,12 @@ export class Item extends Entity {
   carts: User;
 
   @property({
-    type: "list"
+    type: "number"
   })
-  lists: List;
+  listId: number;
 
   @property({
-    type: "order"
+    type: "number"
   })
-  orders: Order;
+  ordersId: number;
 }

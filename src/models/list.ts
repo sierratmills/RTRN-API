@@ -15,12 +15,12 @@ export class List extends Entity {
   listname: string;
 
   @property({
-    type: "User"
+    type: "number"
   })
-  users: User;
+  userId: number;
 
   @property({
-    type: "Item"
+    type: "number"
   })
-  items: Item;
+  itemId: number;
 }

@@ -49,14 +49,14 @@ export class User extends Entity {
     password: string;
 
     @property({
-        type: "order",
+        type: "number",
     })
-    orderhistory: Order;
+    orderhistoryId: number;
 
     @property({
-        type: "item",
+        type: "number",
     })
-    cart: Item;
+    cartId: number;
 
 
 }
