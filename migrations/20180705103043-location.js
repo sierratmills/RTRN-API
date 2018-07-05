@@ -35,16 +35,21 @@ exports.up = function (db, callback) {
     long: {
       type: 'string',
       length: 45
-    }
-  }, callback);
-  db.addForeignKey('loccation', 'store', 'location_store_fk',
-    {
-      'storeid': 'idstore'
     },
-    {
-      onDelete: 'CASCADE',
-      onUpdate: 'RESTRICT'
-    }, callback);
+    storeid: {
+      type: 'int'
+    }
+  }, () => {
+    db.addForeignKey('loccation', 'store', 'location_store_fk',
+      {
+        'storeid': 'idstore'
+      },
+      {
+        onDelete: 'CASCADE',
+        onUpdate: 'RESTRICT'
+      }, callback);
+  });
+
 };
 
 exports.down = function (db, callback) {

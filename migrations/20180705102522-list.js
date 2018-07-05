@@ -24,16 +24,21 @@ exports.up = function (db, callback) {
       type: 'string',
       length: 45
     },
-  }, callback);
+    userid: {
+      type: 'int'
+    }
+  }, () => {
+    db.addForeignKey('list', 'user', 'list_user_fk',
+      {
+        'userid': 'id'
+      },
+      {
+        onDelete: 'CASCADE',
+        onUpdate: 'RESTRICT'
+      }, callback);
+  });
 
-  db.addForeignKey('list', 'user', 'list_user_fk',
-    {
-      'userid': 'id'
-    },
-    {
-      onDelete: 'CASCADE',
-      onUpdate: 'RESTRICT'
-    }, callback);
+
 };
 
 exports.down = function (db, callback) {

@@ -14,6 +14,7 @@ exports.setup = function(options, seedLink) {
   seed = seedLink;
 };
 
+<<<<<<< HEAD
 exports.up = function(db, callback) {
   db.createTable('item', { 
     id: {         
@@ -49,6 +50,53 @@ exports.up = function(db, callback) {
       length: 45       
     },        
   }, callback);
+=======
+exports.up = function (db, callback) {
+  db.createTable('item', {
+    id: {
+      type: 'int',
+      primaryKey: true
+    },
+    itemname: {
+      type: 'string',
+      length: 45
+    },
+    itemtype: {
+      type: 'string',
+      length: 45
+    },
+    price: {
+      type: 'string',
+      length: 45
+    },
+    url: {
+      type: 'string',
+      length: 45
+    },
+    image: {
+      type: 'string',
+      length: 45
+    },
+    size: {
+      type: 'string',
+      length: 45
+    },
+    storeid: {
+      type: 'int'
+    }
+  }, () => {
+    db.addForeignKey('item', 'store', 'item_store_fk',
+      {
+        'storeid': 'idstore'
+      },
+      {
+        onDelete: 'CASCADE',
+        onUpdate: 'RESTRICT'
+      }, callback);
+  });
+
+
+>>>>>>> 7893d7c97e5dffd20ca54606c6d182e9aec0f2ab
 };
 
 exports.down = function(db, callback) {

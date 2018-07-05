@@ -19,24 +19,33 @@ exports.up = function (db, callback) {
     idorder_item_map: {
       type: 'int',
       primaryKey: true
+    },
+    itemid: {
+      type: 'itemid'
+    },
+    orderid: {
+      type: 'int'
     }
-  }, callback);
-  db.addForeignKey('order_item_map', 'item', 'item_order_fk',
-    {
-      'itemid': 'iditem'
-    },
-    {
-      onDelete: 'CASCADE',
-      onUpdate: 'RESTRICT'
-    }, callback);
-  db.addForeignKey('order_item_map', 'order', 'order_item_fk',
-    {
-      'orderid': 'idorder'
-    },
-    {
-      onDelete: 'CASCADE',
-      onUpdate: 'RESTRICT'
-    }, callback);
+  }, () => {
+    db.addForeignKey('order_item_map', 'item', 'item_order_fk',
+      {
+        'itemid': 'iditem'
+      },
+      {
+        onDelete: 'CASCADE',
+        onUpdate: 'RESTRICT'
+      }, () => {
+        db.addForeignKey('order_item_map', 'order', 'order_item_fk',
+          {
+            'orderid': 'idorder'
+          },
+          {
+            onDelete: 'CASCADE',
+            onUpdate: 'RESTRICT'
+          }, callback);
+      });
+  });
+
 };
 
 exports.down = function (db, callback) {
@@ -44,11 +53,13 @@ exports.down = function (db, callback) {
   db.removeForeignKey('order_item_map', 'item_order_fk',
     {
       dropIndex: true,
-    }, callback);
-  db.removeForeignKey('order_item_map', 'item_order_fk',
-    {
-      dropIndex: true,
-    }, callback);
+    }, () => {
+      db.removeForeignKey('order_item_map', 'item_order_fk',
+        {
+          dropIndex: true,
+        }, callback);
+    });
+
 };
 
 exports._meta = {
