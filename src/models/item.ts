@@ -1,7 +1,4 @@
 import { model, property, Entity, Order } from "@loopback/repository";
-import { Store } from "./store";
-import { User } from "./user";
-import { List } from "./list";
 
 @model({
   name: "item"
@@ -10,8 +7,13 @@ import { List } from "./list";
 export class Item extends Entity {
 
   @property({
-    type: "string",
+    type: "number",
     id: true
+  })
+  iditem: number;
+
+  @property({
+    type: "string"
   })
   itemname: string;
 
@@ -28,12 +30,12 @@ export class Item extends Entity {
   @property({
     type: "string"
   })
-  URL: string;
+  url: string;
 
   @property({
     type: "number"
   })
-  storeId: number;
+  storeid: number;
 
   @property({
     type: "string"
@@ -41,17 +43,7 @@ export class Item extends Entity {
   image: string;
 
   @property({
-    type: "User"
+    type: "string"
   })
-  carts: User;
-
-  @property({
-    type: "number"
-  })
-  listId: number;
-
-  @property({
-    type: "number"
-  })
-  ordersId: number;
+  size: string;
 }

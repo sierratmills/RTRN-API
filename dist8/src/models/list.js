@@ -14,11 +14,11 @@ let List = class List extends repository_1.Entity {
 };
 __decorate([
     repository_1.property({
-        type: "string",
+        type: "number",
         id: true
     }),
-    __metadata("design:type", String)
-], List.prototype, "listname", void 0);
+    __metadata("design:type", Number)
+], List.prototype, "idlist", void 0);
 __decorate([
     repository_1.property({
         type: "number"
@@ -27,10 +27,10 @@ __decorate([
 ], List.prototype, "userId", void 0);
 __decorate([
     repository_1.property({
-        type: "number"
+        type: "string",
     }),
-    __metadata("design:type", Number)
-], List.prototype, "itemId", void 0);
+    __metadata("design:type", String)
+], List.prototype, "name", void 0);
 List = __decorate([
     repository_1.model({
         name: "list"

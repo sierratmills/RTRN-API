@@ -18,19 +18,7 @@ __decorate([
         id: true
     }),
     __metadata("design:type", Number)
-], Order.prototype, "userId", void 0);
-__decorate([
-    repository_1.property({
-        type: "number",
-    }),
-    __metadata("design:type", Number)
-], Order.prototype, "itemId", void 0);
-__decorate([
-    repository_1.property({
-        type: "string",
-    }),
-    __metadata("design:type", String)
-], Order.prototype, "orderNumber", void 0);
+], Order.prototype, "idorder", void 0);
 __decorate([
     repository_1.property({
         type: "string",
@@ -49,6 +37,12 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], Order.prototype, "receipt", void 0);
+__decorate([
+    repository_1.property({
+        type: "number"
+    }),
+    __metadata("design:type", Number)
+], Order.prototype, "userid", void 0);
 Order = __decorate([
     repository_1.model({
         name: "order"
