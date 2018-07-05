@@ -31,17 +31,22 @@ exports.up = function (db, callback) {
     receipt: {
       type: 'string',
       length: 45
-    }
-  }, callback);
-
-  db.addForeignKey('order', 'user', 'order_user_fk',
-    {
-      'userid': 'id'
     },
-    {
-      onDelete: 'CASCADE',
-      onUpdate: 'RESTRICT'
-    }, callback);
+    userid: {
+      type: 'int'
+    }
+  }, () => {
+    db.addForeignKey('order', 'user', 'order_user_fk',
+      {
+        'userid': 'id'
+      },
+      {
+        onDelete: 'CASCADE',
+        onUpdate: 'RESTRICT'
+      }, callback);
+  });
+
+
 
 };
 
