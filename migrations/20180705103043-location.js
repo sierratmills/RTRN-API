@@ -15,31 +15,35 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db, callback) {
-  db.createTable('order', { 
-    idorder: {         
+  db.createTable('location', { 
+    idlocation: {         
       type: 'int',         
       primaryKey: true       
-    },       
-    address: {         
+    },     
+    street: {         
       type: 'string',         
       length: 45       
-    },       
-    payment: {         
+    },  
+    city: {         
       type: 'string',         
       length: 45       
-    },        
-    receipt: {         
+    },     
+    lat: {         
       type: 'string',         
       length: 45       
-    }, 
-    userid: {         
-      type: 'int'    
-    },          
+    },  
+    long: {         
+      type: 'string',         
+      length: 45       
+    },  
+    storeid: {         
+      type: 'number'     
+    },  
   }, callback);
 };
 
 exports.down = function(db, callback) {
-  db.dropTable('order');
+  db.dropTable('location');
 };
 
 exports._meta = {

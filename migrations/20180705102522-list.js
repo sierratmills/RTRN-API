@@ -14,8 +14,8 @@ exports.setup = function(options, seedLink) {
   seed = seedLink;
 };
 
-exports.up = function(db) {
-  db.createTable('item', { 
+exports.up = function(db, callback) {
+  db.createTable('list', { 
     idlist: {         
       type: 'int',         
       primaryKey: true       
@@ -27,11 +27,11 @@ exports.up = function(db) {
       type: 'string',         
       length: 45       
     },     
-  }, done);
+  }, callback);
 };
 
-exports.down = function(db) {
-  return null;
+exports.down = function(db, callback) {
+  db.dropTable('list');
 };
 
 exports._meta = {

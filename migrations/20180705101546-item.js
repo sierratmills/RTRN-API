@@ -14,7 +14,7 @@ exports.setup = function(options, seedLink) {
   seed = seedLink;
 };
 
-exports.up = function(db) {
+exports.up = function(db, callback) {
   db.createTable('item', { 
     id: {         
       type: 'int',         
@@ -48,11 +48,11 @@ exports.up = function(db) {
       type: 'string',         
       length: 45       
     },        
-  }, done);
+  }, callback);
 };
 
-exports.down = function(db) {
-  return null;
+exports.down = function(db, callback) {
+  db.dropTable('item');
 };
 
 exports._meta = {
