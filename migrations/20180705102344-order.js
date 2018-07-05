@@ -16,38 +16,25 @@ exports.setup = function(options, seedLink) {
 
 exports.up = function(db) {
   db.createTable('item', { 
-    id: {         
+    idorder: {         
       type: 'int',         
       primaryKey: true       
     },       
-    itemname: {         
+    address: {         
       type: 'string',         
       length: 45       
     },       
-    itemtype: {         
+    payment: {         
       type: 'string',         
       length: 45       
     },        
-    price: {         
+    receipt: {         
       type: 'string',         
       length: 45       
     }, 
-    url: {         
-      type: 'string',         
-      length: 45       
-    },    
-    storeid: {         
-      type: 'string',         
-      length: 45       
-    },   
-    image: {         
-      type: 'string',         
-      length: 45       
-    },  
-    size: {         
-      type: 'string',         
-      length: 45       
-    },        
+    userid: {         
+      type: 'int'    
+    },          
   }, done);
 };
 
