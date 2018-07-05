@@ -20,21 +20,42 @@ exports.up = function (db, callback) {
       type: 'int',
       primaryKey: true
     },
-    listid: {
-      type: 'int'
-    },
-    itemid: {
-      type: 'itemid'
-    },
     listname: {
       type: 'string',
       length: 45
     }
   }, callback);
+
+  db.addForeignKey('list_item_map', 'item', 'item_list_fk',
+    {
+      'itemid': 'iditem'
+    },
+    {
+      onDelete: 'CASCADE',
+      onUpdate: 'RESTRICT'
+    }, callback);
+
+  db.addForeignKey('list_item_map', 'list', 'list_item_fk',
+    {
+      'listid': 'idlist'
+    },
+    {
+      onDelete: 'CASCADE',
+      onUpdate: 'RESTRICT'
+    }, callback);
+
 };
 
 exports.down = function (db, callback) {
   db.dropTable('list_item_map');
+  db.removeForeignKey('list_item_map', 'item_list_fk',
+    {
+      dropIndex: true,
+    }, callback);
+  db.removeForeignKey('list_item_map', 'list_item_fk',
+    {
+      dropIndex: true,
+    }, callback);
 };
 
 exports._meta = {
