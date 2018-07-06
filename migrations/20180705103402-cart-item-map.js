@@ -21,30 +21,30 @@ exports.up = function (db, callback) {
       primaryKey: true
     },
     itemid: {
-      type: 'int'
+      type: 'int',
+      foreignKey: {
+        name: 'item_user_fk',
+        table: 'item',
+        rules: {
+          onDelete: 'CASCADE',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'iditem'
+      }
     },
     cartid: {
-      type: 'int'
+      type: 'int',
+      foreignKey: {
+        name: 'user_item_fk',
+        table: 'user',
+        rules: {
+          onDelete: 'CASCADE',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'id'
+      }
     }
-  }, () => {
-    db.addForeignKey('cart_item_map', 'item', 'item_user_fk',
-      {
-        'itemid': 'iditem'
-      },
-      {
-        onDelete: 'CASCADE',
-        onUpdate: 'RESTRICT'
-      }, () => {
-        db.addForeignKey('cart_item_map', 'user', 'user_item_fk',
-          {
-            'cartid': 'id'
-          },
-          {
-            onDelete: 'CASCADE',
-            onUpdate: 'RESTRICT'
-          }, callback);
-      });
-  });
+  }, callback);
 
 
 

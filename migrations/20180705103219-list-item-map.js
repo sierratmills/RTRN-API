@@ -25,28 +25,30 @@ exports.up = function (db, callback) {
       length: 45
     },
     listid: {
-      type: 'int'
+      type: 'int',
+      foreignKey: {
+        name: 'list_item_fk',
+        table: 'list',
+        rules: {
+          onDelete: 'CASCADE',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'idlist'
+      }
+    },
+    itemid: {
+      type: 'int',
+      foreignKey: {
+        name: 'item_list_fk',
+        table: 'item',
+        rules: {
+          onDelete: 'CASCADE',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'iditem'
+      }
     }
-  }, () => {
-    db.addForeignKey('list_item_map', 'list', 'list_item_fk',
-      {
-        'listid': 'idlist'
-      },
-      {
-        onDelete: 'CASCADE',
-        onUpdate: 'RESTRICT'
-      }, () => {
-        db.addForeignKey('list_item_map', 'item', 'item_list_fk',
-          {
-            'itemid': 'iditem'
-          },
-          {
-            onDelete: 'CASCADE',
-            onUpdate: 'RESTRICT'
-          }, callback);
-      });
-  });
-
+  }, callback);
 };
 
 exports.down = function (db, callback) {

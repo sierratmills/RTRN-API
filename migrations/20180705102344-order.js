@@ -33,21 +33,18 @@ exports.up = function (db, callback) {
       length: 45
     },
     userid: {
-      type: 'int'
+      type: 'int',
+      foreignKey: {
+        name: 'order_user_fk',
+        table: 'user',
+        rules: {
+          onDelete: 'CASCADE',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'id'
+      }
     }
-  }, () => {
-    db.addForeignKey('order', 'user', 'order_user_fk',
-      {
-        'userid': 'id'
-      },
-      {
-        onDelete: 'CASCADE',
-        onUpdate: 'RESTRICT'
-      }, callback);
-  });
-
-
-
+  }, callback);
 };
 
 exports.down = function (db, callback) {

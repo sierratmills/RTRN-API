@@ -45,18 +45,18 @@ exports.up = function (db, callback) {
       length: 45
     },
     storeid: {
-      type: 'int'
+      type: 'int',
+      foreignKey: {
+        name: 'item_store_fk',
+        table: 'store',
+        rules: {
+          onDelete: 'CASCADE',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'idstore'
+      }
     }
-  }, () => {
-    db.addForeignKey('item', 'store', 'item_store_fk',
-      {
-        'storeid': 'idstore'
-      },
-      {
-        onDelete: 'CASCADE',
-        onUpdate: 'RESTRICT'
-      }, callback);
-  });
+  }, callback);
 
 
 };
