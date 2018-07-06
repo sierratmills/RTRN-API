@@ -21,7 +21,7 @@ exports.up = function (db, callback) {
       primaryKey: true
     },
     itemid: {
-      type: 'itemid',
+      type: 'int',
       foreignKey: {
         name: 'item_order_fk',
         table: 'item',
