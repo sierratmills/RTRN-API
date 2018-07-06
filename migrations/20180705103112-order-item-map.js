@@ -20,7 +20,7 @@ exports.up = function (db, callback) {
       type: 'int',
       primaryKey: true
     },
-    itemid: {
+   itemid: {
       type: 'itemid',
       foreignKey: {
         name: 'item_order_fk',
