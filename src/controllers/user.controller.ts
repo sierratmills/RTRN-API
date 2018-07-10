@@ -57,11 +57,7 @@ export class UserController {
     if (!user.email || !user.password || !user.email) {
       throw new HttpErrors.BadRequest('user is missing data');
     }
-<<<<<<< HEAD
     if (await this.userRepo.count({ email : user.email})) {
-=======
-    if (this.userRepo.count({ email: user.email })) {
->>>>>>> 77863743c73d38df463333ec7b688a20d30afd77
       throw new HttpErrors.BadRequest('user already exists');
     }
     return await this.userRepo.create(user);
