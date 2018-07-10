@@ -49,7 +49,7 @@ let UserController = class UserController {
         if (!user.email || !user.password || !user.email) {
             throw new rest_1.HttpErrors.BadRequest('user is missing data');
         }
-        if (this.userRepo.count({ email: user.email })) {
+        if (await this.userRepo.count({ email: user.email })) {
             throw new rest_1.HttpErrors.BadRequest('user already exists');
         }
         return await this.userRepo.create(user);
