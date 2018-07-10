@@ -1,7 +1,8 @@
-import { get, param, requestBody, post } from "@loopback/rest";
+import { get, param, requestBody, post, HttpErrors } from "@loopback/rest";
 import { repository } from "@loopback/repository";
 import { OrderRepository } from "../repositories/Order.repository";
 import { Order } from "../models/Order";
+import { verify } from "jsonwebtoken";
 
 
 // Uncomment these imports to begin using these cool features!
@@ -14,6 +15,19 @@ export class OrderController {
   constructor(
     @repository(OrderRepository.name) private orderRepo: OrderRepository
   ) { }
+
+  @get("/verify")
+  verifyToken(@param.query.string("jwt") jwt: string) {
+
+    try {
+        let payload = verify(jwt, "shh") as any;
+        return payload.user.orderid;
+    } catch (err) {
+        throw new HttpErrors.Unauthorized("Invalid token");
+    }
+
+    // The user is authenticated and we can process...
+  }
 
   @get("/orders")
   async getAllOrders(

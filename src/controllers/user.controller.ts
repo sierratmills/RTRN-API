@@ -3,11 +3,8 @@ import { repository } from "@loopback/repository";
 import { UserRepository } from "../repositories/user.repository";
 import { Class, Repository, RepositoryMixin, juggler } from '@loopback/repository';
 import { User } from "../models/user";
-<<<<<<< HEAD
 import { sign, verify } from 'jsonwebtoken';
-=======
-import { sign, verify } from'jsonwebtoken';
->>>>>>> 8831d13a031ae39ca96c0b0cdf8f2cf63d65b396
+var bcrypt = require('bcryptjs');
 
 
 // Uncomment these imports to begin using these cool features!
@@ -27,6 +24,7 @@ export class UserController {
     try {
         let payload = verify(jwt, "shh");
         return payload;
+        
     } catch (err) {
         throw new HttpErrors.Unauthorized("Invalid token");
     }
@@ -61,14 +59,18 @@ export class UserController {
     if (!user.email || !user.password || !user.email) {
       throw new HttpErrors.BadRequest('user is missing data');
     }
-<<<<<<< HEAD
     if (await this.userRepo.count({ email : user.email})) {
-=======
-    if (this.userRepo.count({ email: user.email })) {
->>>>>>> 77863743c73d38df463333ec7b688a20d30afd77
       throw new HttpErrors.BadRequest('user already exists');
     }
-    return await this.userRepo.create(user);
+
+    let hashedPassword = await bcrypt.hash(user.password, 10);
+    var userToStore = new User();   
+    userToStore.id = user.id;   
+    userToStore.firstname = user.firstname;   
+    userToStore.lastname = user.lastname;   
+    userToStore.email = user.email;   
+    userToStore.password = hashedPassword;
+    return await this.userRepo.create(userToStore);;
   }
 
   @post('/login')
@@ -93,11 +95,14 @@ export class UserController {
     let foundUser = await this.userRepo.findOne({
       where: {
         and: [
-          { email: user.email },
-          { password: user.password }
+          { email: user.email }
         ],
       },
     }) as User;
+
+    if (!await bcrypt.compare(user.password, foundUser.password)) {
+      throw new HttpErrors.Unauthorized('invalid credentials');   
+  }
 
     let jwt = sign({
         user: {
