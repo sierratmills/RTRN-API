@@ -3,7 +3,11 @@ import { repository } from "@loopback/repository";
 import { UserRepository } from "../repositories/user.repository";
 import { Class, Repository, RepositoryMixin, juggler } from '@loopback/repository';
 import { User } from "../models/user";
+<<<<<<< HEAD
 import { sign, verify } from 'jsonwebtoken';
+=======
+import { sign, verify } from'jsonwebtoken';
+>>>>>>> 8831d13a031ae39ca96c0b0cdf8f2cf63d65b396
 
 
 // Uncomment these imports to begin using these cool features!
@@ -16,6 +20,19 @@ export class UserController {
   constructor(
     @repository(UserRepository.name) private userRepo: UserRepository
   ) { }
+
+  @get("/verify")
+  verifyToken(@param.query.string("jwt") jwt: string) {
+
+    try {
+        let payload = verify(jwt, "shh");
+        return payload;
+    } catch (err) {
+        throw new HttpErrors.Unauthorized("Invalid token");
+    }
+
+    // The user is authenticated and we can process...
+  }
 
   @get("/users")
   async getAllUsers(
@@ -49,4 +66,50 @@ export class UserController {
     }
     return await this.userRepo.create(user);
   }
+
+  @post('/login')
+  async loginUser(@requestBody() user: User) {
+    // Check that email and password are both supplied
+    if (!user.email || !user.password) {
+      throw new HttpErrors.Unauthorized('invalid credentials');
+    }
+
+    // Check that email and password are valid
+    let userExists: boolean = !!(await this.userRepo.count({
+      and: [
+        { email: user.email },
+        { password: user.password },
+      ],
+    }));
+
+    if (!userExists) {
+      throw new HttpErrors.Unauthorized('invalid credentials');
+    }
+
+    let foundUser = await this.userRepo.findOne({
+      where: {
+        and: [
+          { email: user.email },
+          { password: user.password }
+        ],
+      },
+    }) as User;
+
+    let jwt = sign({
+        user: {
+            id: foundUser.id,
+            email: foundUser.email
+        }
+    }, 
+    "shh", 
+    {
+        issuer: "auth.ix.com",
+        audience: "ix.com"
+    });
+
+    return {
+        token: jwt
+    };
+  }
+
 }
