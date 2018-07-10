@@ -3,6 +3,7 @@ import { repository } from "@loopback/repository";
 import { UserRepository } from "../repositories/user.repository";
 import { Class, Repository, RepositoryMixin, juggler } from '@loopback/repository';
 import { User } from "../models/user";
+import { sign, verify } from 'jsonwebtoken';
 
 
 // Uncomment these imports to begin using these cool features!
@@ -38,12 +39,12 @@ export class UserController {
 
   @post("/register")
   async registerUser(
-    @requestBody() user : User
+    @requestBody() user: User
   ): Promise<User> {
     if (!user.email || !user.password || !user.email) {
       throw new HttpErrors.BadRequest('user is missing data');
     }
-    if (this.userRepo.count({ email : user.email})) {
+    if (this.userRepo.count({ email: user.email })) {
       throw new HttpErrors.BadRequest('user already exists');
     }
     return await this.userRepo.create(user);
