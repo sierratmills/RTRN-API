@@ -3,11 +3,7 @@ import { repository } from "@loopback/repository";
 import { UserRepository } from "../repositories/user.repository";
 import { Class, Repository, RepositoryMixin, juggler } from '@loopback/repository';
 import { User } from "../models/user";
-<<<<<<< HEAD
 import { sign, verify } from 'jsonwebtoken';
-=======
-import { sign, verify } from'jsonwebtoken';
->>>>>>> 8831d13a031ae39ca96c0b0cdf8f2cf63d65b396
 
 
 // Uncomment these imports to begin using these cool features!
