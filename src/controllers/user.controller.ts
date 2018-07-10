@@ -4,6 +4,10 @@ import { UserRepository } from "../repositories/user.repository";
 import { Class, Repository, RepositoryMixin, juggler } from '@loopback/repository';
 import { User } from "../models/user";
 import { sign, verify } from 'jsonwebtoken';
+<<<<<<< HEAD
+var bcrypt = require('bcryptjs');
+=======
+>>>>>>> 9f49fe26af4a8abe85bac5204bbbdf2ee421d369
 
 
 // Uncomment these imports to begin using these cool features!
@@ -23,6 +27,7 @@ export class UserController {
     try {
         let payload = verify(jwt, "shh");
         return payload;
+        
     } catch (err) {
         throw new HttpErrors.Unauthorized("Invalid token");
     }
@@ -60,7 +65,15 @@ export class UserController {
     if (await this.userRepo.count({ email : user.email})) {
       throw new HttpErrors.BadRequest('user already exists');
     }
-    return await this.userRepo.create(user);
+
+    let hashedPassword = await bcrypt.hash(user.password, 10);
+    var userToStore = new User();   
+    userToStore.id = user.id;   
+    userToStore.firstname = user.firstname;   
+    userToStore.lastname = user.lastname;   
+    userToStore.email = user.email;   
+    userToStore.password = hashedPassword;
+    return await this.userRepo.create(userToStore);;
   }
 
   @post('/login')
@@ -85,11 +98,14 @@ export class UserController {
     let foundUser = await this.userRepo.findOne({
       where: {
         and: [
-          { email: user.email },
-          { password: user.password }
+          { email: user.email }
         ],
       },
     }) as User;
+
+    if (!await bcrypt.compare(user.password, foundUser.password)) {
+      throw new HttpErrors.Unauthorized('invalid credentials');   
+  }
 
     let jwt = sign({
         user: {
