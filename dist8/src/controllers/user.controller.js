@@ -18,6 +18,8 @@ const user_repository_1 = require("../repositories/user.repository");
 const user_1 = require("../models/user");
 const jsonwebtoken_1 = require("jsonwebtoken");
 var bcrypt = require('bcryptjs');
+// Uncomment these imports to begin using these cool features!
+// import {inject} from '@loopback/context';
 let UserController = class UserController {
     constructor(userRepo) {
         this.userRepo = userRepo;

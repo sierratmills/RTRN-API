@@ -4,10 +4,7 @@ import { UserRepository } from "../repositories/user.repository";
 import { Class, Repository, RepositoryMixin, juggler } from '@loopback/repository';
 import { User } from "../models/user";
 import { sign, verify } from 'jsonwebtoken';
-<<<<<<< HEAD
 var bcrypt = require('bcryptjs');
-=======
->>>>>>> 9f49fe26af4a8abe85bac5204bbbdf2ee421d369
 
 
 // Uncomment these imports to begin using these cool features!

@@ -26,7 +26,7 @@ exports.up = function (db, callback) {
     },
     password: {
       type: 'string',
-      length: 45
+      length: 4096
     },
     firstname: {
       type: 'string',
