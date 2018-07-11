@@ -72,7 +72,7 @@ let UserController = class UserController {
             throw new rest_1.HttpErrors.Unauthorized('invalid credentials');
         }
         // Check that email and password are valid
-        let userExists = !!(await this.userRepo.count({
+        let userExists = !(await this.userRepo.count({
             and: [
                 { email: user.email },
                 { password: user.password },
