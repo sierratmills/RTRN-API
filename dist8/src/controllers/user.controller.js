@@ -18,11 +18,8 @@ const user_repository_1 = require("../repositories/user.repository");
 const user_1 = require("../models/user");
 const jsonwebtoken_1 = require("jsonwebtoken");
 var bcrypt = require('bcryptjs');
-<<<<<<< HEAD
 // Uncomment these imports to begin using these cool features!
 // import {inject} from '@loopback/context';
-=======
->>>>>>> 7dcd7a0cb5a322ecc3996b6625def2d42426481f
 let UserController = class UserController {
     constructor(userRepo) {
         this.userRepo = userRepo;
@@ -56,12 +53,9 @@ let UserController = class UserController {
         if (await this.userRepo.count({ email: user.email })) {
             throw new rest_1.HttpErrors.BadRequest('user already exists');
         }
-<<<<<<< HEAD
         if (await this.userRepo.count({ username: user.username })) {
             throw new rest_1.HttpErrors.BadRequest('username already exists');
         }
-=======
->>>>>>> 7dcd7a0cb5a322ecc3996b6625def2d42426481f
         let hashedPassword = await bcrypt.hash(user.password, 10);
         var userToStore = new user_1.User();
         userToStore.id = user.id;
