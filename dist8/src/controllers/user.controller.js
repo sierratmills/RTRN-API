@@ -17,6 +17,7 @@ const repository_1 = require("@loopback/repository");
 const user_repository_1 = require("../repositories/user.repository");
 const user_1 = require("../models/user");
 const jsonwebtoken_1 = require("jsonwebtoken");
+var bcrypt = require('bcryptjs');
 // Uncomment these imports to begin using these cool features!
 // import {inject} from '@loopback/context';
 let UserController = class UserController {
@@ -46,13 +47,24 @@ let UserController = class UserController {
         }
     }
     async registerUser(user) {
-        if (!user.email || !user.password || !user.email) {
+        if (!user.email || !user.password || !user.username || !user.firstname || !user.lastname) {
             throw new rest_1.HttpErrors.BadRequest('user is missing data');
         }
         if (await this.userRepo.count({ email: user.email })) {
             throw new rest_1.HttpErrors.BadRequest('user already exists');
         }
-        return await this.userRepo.create(user);
+        if (await this.userRepo.count({ username: user.username })) {
+            throw new rest_1.HttpErrors.BadRequest('username already exists');
+        }
+        let hashedPassword = await bcrypt.hash(user.password, 10);
+        var userToStore = new user_1.User();
+        userToStore.id = user.id;
+        userToStore.firstname = user.firstname;
+        userToStore.lastname = user.lastname;
+        userToStore.email = user.email;
+        userToStore.password = hashedPassword;
+        return await this.userRepo.create(userToStore);
+        ;
     }
     async loginUser(user) {
         // Check that email and password are both supplied
@@ -72,11 +84,13 @@ let UserController = class UserController {
         let foundUser = await this.userRepo.findOne({
             where: {
                 and: [
-                    { email: user.email },
-                    { password: user.password }
+                    { email: user.email }
                 ],
             },
         });
+        if (!await bcrypt.compare(user.password, foundUser.password)) {
+            throw new rest_1.HttpErrors.Unauthorized('invalid credentials');
+        }
         let jwt = jsonwebtoken_1.sign({
             user: {
                 id: foundUser.id,

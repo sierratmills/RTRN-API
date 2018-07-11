@@ -4,10 +4,7 @@ import { UserRepository } from "../repositories/user.repository";
 import { Class, Repository, RepositoryMixin, juggler } from '@loopback/repository';
 import { User } from "../models/user";
 import { sign, verify } from 'jsonwebtoken';
-<<<<<<< HEAD
 var bcrypt = require('bcryptjs');
-=======
->>>>>>> 9f49fe26af4a8abe85bac5204bbbdf2ee421d369
 
 
 // Uncomment these imports to begin using these cool features!
@@ -59,12 +56,15 @@ export class UserController {
   async registerUser(
     @requestBody() user: User
   ): Promise<User> {
-    if (!user.email || !user.password || !user.email) {
+    if (!user.email || !user.password || !user.username || !user.firstname || !user.lastname) {
       throw new HttpErrors.BadRequest('user is missing data');
     }
     if (await this.userRepo.count({ email : user.email})) {
       throw new HttpErrors.BadRequest('user already exists');
-    }
+    } 
+    if (await this.userRepo.count({ username : user.username})) {
+      throw new HttpErrors.BadRequest('username already exists');
+    } 
 
     let hashedPassword = await bcrypt.hash(user.password, 10);
     var userToStore = new User();   

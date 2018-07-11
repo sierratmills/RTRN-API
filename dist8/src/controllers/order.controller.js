@@ -16,11 +16,22 @@ const rest_1 = require("@loopback/rest");
 const repository_1 = require("@loopback/repository");
 const Order_repository_1 = require("../repositories/Order.repository");
 const Order_1 = require("../models/Order");
+const jsonwebtoken_1 = require("jsonwebtoken");
 // Uncomment these imports to begin using these cool features!
 // import {inject} from '@loopback/context';
 let OrderController = class OrderController {
     constructor(orderRepo) {
         this.orderRepo = orderRepo;
+    }
+    verifyToken(jwt) {
+        try {
+            let payload = jsonwebtoken_1.verify(jwt, "shh");
+            return payload.user.orderid;
+        }
+        catch (err) {
+            throw new rest_1.HttpErrors.Unauthorized("Invalid token");
+        }
+        // The user is authenticated and we can process...
     }
     async getAllOrders(ordername) {
         return await this.orderRepo.find();
@@ -34,6 +45,13 @@ let OrderController = class OrderController {
         return createdOrder;
     }
 };
+__decorate([
+    rest_1.get("/verify"),
+    __param(0, rest_1.param.query.string("jwt")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], OrderController.prototype, "verifyToken", null);
 __decorate([
     rest_1.get("/orders"),
     __param(0, rest_1.param.query.string("orderId")),
