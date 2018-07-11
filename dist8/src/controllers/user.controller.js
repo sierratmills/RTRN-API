@@ -47,11 +47,14 @@ let UserController = class UserController {
         }
     }
     async registerUser(user) {
-        if (!user.email || !user.password || !user.email) {
+        if (!user.email || !user.password || !user.username || !user.firstname || !user.lastname) {
             throw new rest_1.HttpErrors.BadRequest('user is missing data');
         }
         if (await this.userRepo.count({ email: user.email })) {
             throw new rest_1.HttpErrors.BadRequest('user already exists');
+        }
+        if (await this.userRepo.count({ username: user.username })) {
+            throw new rest_1.HttpErrors.BadRequest('username already exists');
         }
         let hashedPassword = await bcrypt.hash(user.password, 10);
         var userToStore = new user_1.User();

@@ -56,12 +56,15 @@ export class UserController {
   async registerUser(
     @requestBody() user: User
   ): Promise<User> {
-    if (!user.email || !user.password || !user.email) {
+    if (!user.email || !user.password || !user.username || !user.firstname || !user.lastname) {
       throw new HttpErrors.BadRequest('user is missing data');
     }
     if (await this.userRepo.count({ email : user.email})) {
       throw new HttpErrors.BadRequest('user already exists');
-    }
+    } 
+    if (await this.userRepo.count({ username : user.username})) {
+      throw new HttpErrors.BadRequest('username already exists');
+    } 
 
     let hashedPassword = await bcrypt.hash(user.password, 10);
     var userToStore = new User();   
