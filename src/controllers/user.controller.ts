@@ -84,7 +84,7 @@ export class UserController {
     }
 
     // Check that email and password are valid
-    let userExists: boolean = !!(await this.userRepo.count({
+    let userExists: boolean = !(await this.userRepo.count({
       and: [
         { email: user.email },
         { password: user.password },
