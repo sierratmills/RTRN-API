@@ -32,6 +32,10 @@ let StoreController = class StoreController {
         let createdStore = await this.userRepo.create(store);
         return createdStore;
     }
+    async findStores(category, zipcode) {
+        //search uses google maps api
+        //create stores in database for results if they dont already exist
+    }
 };
 __decorate([
     rest_1.get("/stores"),
@@ -54,6 +58,13 @@ __decorate([
     __metadata("design:paramtypes", [store_1.Store]),
     __metadata("design:returntype", Promise)
 ], StoreController.prototype, "createStore", null);
+__decorate([
+    rest_1.post("/findStores"),
+    __param(0, rest_1.requestBody()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Promise)
+], StoreController.prototype, "findStores", null);
 StoreController = __decorate([
     __param(0, repository_1.repository(store_repository_1.StoreRepository.name)),
     __metadata("design:paramtypes", [store_repository_1.StoreRepository])

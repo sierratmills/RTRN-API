@@ -30,7 +30,7 @@ class RTRNApiApplication extends boot_1.BootMixin(repository_1.RepositoryMixin(r
             port: 3306,
             database: 'RTRNdata',
             user: 'root',
-            password: 'qwerty123'
+            password: ''
         });
         this.dataSource(dataSourceConfig);
     }

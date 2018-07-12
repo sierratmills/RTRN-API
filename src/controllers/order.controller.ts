@@ -16,14 +16,14 @@ export class OrderController {
     @repository(OrderRepository.name) private orderRepo: OrderRepository
   ) { }
 
-  @get("/verify")
+  @get("/verifyOrder")
   verifyToken(@param.query.string("jwt") jwt: string) {
 
     try {
-        let payload = verify(jwt, "shh") as any;
-        return payload.user.orderid;
+      let payload = verify(jwt, "shh") as any;
+      return payload.user.orderid;
     } catch (err) {
-        throw new HttpErrors.Unauthorized("Invalid token");
+      throw new HttpErrors.Unauthorized("Invalid token");
     }
 
     // The user is authenticated and we can process...

@@ -27,6 +27,7 @@ let UserController = class UserController {
     verifyToken(jwt) {
         try {
             let payload = jsonwebtoken_1.verify(jwt, "shh");
+            console.log(payload);
             return payload;
         }
         catch (err) {
@@ -63,6 +64,7 @@ let UserController = class UserController {
         userToStore.lastname = user.lastname;
         userToStore.email = user.email;
         userToStore.password = hashedPassword;
+        userToStore.username = user.username;
         return await this.userRepo.create(userToStore);
         ;
     }
@@ -94,7 +96,10 @@ let UserController = class UserController {
         let jwt = jsonwebtoken_1.sign({
             user: {
                 id: foundUser.id,
-                email: foundUser.email
+                email: foundUser.email,
+                firstname: foundUser.firstname,
+                lastname: foundUser.lastname,
+                username: foundUser.username
             }
         }, "shh", {
             issuer: "auth.ix.com",

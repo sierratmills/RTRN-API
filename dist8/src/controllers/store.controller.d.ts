@@ -6,4 +6,5 @@ export declare class StoreController {
     getAllStores(storename: string): Promise<Array<Store>>;
     getSpecificStore(storeId: string): any;
     createStore(store: Store): Promise<Store>;
+    findStores(category: String, zipcode: String): Promise<void>;
 }

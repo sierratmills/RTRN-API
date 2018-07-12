@@ -38,4 +38,11 @@ export class StoreController {
     let createdStore = await this.userRepo.create(store);
     return createdStore;
   }
+
+  @post("/findStores")
+  async findStores(
+    @requestBody() category: String, zipcode: String){
+      //search uses google maps api
+      //create stores in database for results if they dont already exist
+    }
 }

@@ -46,7 +46,7 @@ let OrderController = class OrderController {
     }
 };
 __decorate([
-    rest_1.get("/verify"),
+    rest_1.get("/verifyOrder"),
     __param(0, rest_1.param.query.string("jwt")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

@@ -23,8 +23,8 @@ export class UserController {
 
     try {
       let payload = verify(jwt, "shh");
+      console.log(payload);
       return payload;
-
     } catch (err) {
       throw new HttpErrors.Unauthorized("Invalid token");
     }
@@ -73,6 +73,7 @@ export class UserController {
     userToStore.lastname = user.lastname;
     userToStore.email = user.email;
     userToStore.password = hashedPassword;
+    userToStore.username = user.username;
     return await this.userRepo.create(userToStore);;
   }
 
@@ -110,7 +111,10 @@ export class UserController {
     let jwt = sign({
       user: {
         id: foundUser.id,
-        email: foundUser.email
+        email: foundUser.email,
+        firstname: foundUser.firstname,
+        lastname: foundUser.lastname,
+        username: foundUser.username
       }
     },
       "shh",
