@@ -31,7 +31,9 @@
     "test:dev": "lb-mocha --allow-console-logs DIST/test/**/*.js && npm run posttest",
     "prestart": "npm run build:current",
     "start": "node .",
-    "prepublishOnly": "npm run test"
+    "prepublishOnly": "npm run test",
+
+    "sierra": "DATABASE_PASSWORD=qwerty123 VARIABLE_SOMETHING=lol npm start"
   },
   "repository": {
     "type": "git"
