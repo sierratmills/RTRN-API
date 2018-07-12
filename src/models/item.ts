@@ -8,7 +8,8 @@ export class Item extends Entity {
 
   @property({
     type: "number",
-    id: true
+    id: true,
+    autoincrement: true,
   })
   iditem: number;
 

@@ -45,7 +45,7 @@ export class OrderController {
 
   }
 
-  @post("/orders")
+  @post("/createorder")
   async createOrder(
     @requestBody() order: Order
   ): Promise<Order> {
