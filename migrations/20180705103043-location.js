@@ -18,7 +18,8 @@ exports.up = function (db, callback) {
   db.createTable('location', {
     idlocation: {
       type: 'int',
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     street: {
       type: 'string',

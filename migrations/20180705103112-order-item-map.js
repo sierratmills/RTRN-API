@@ -18,7 +18,8 @@ exports.up = function (db, callback) {
   db.createTable('order_item_map', {
     idorder_item_map: {
       type: 'int',
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     itemid: {
       type: 'int',

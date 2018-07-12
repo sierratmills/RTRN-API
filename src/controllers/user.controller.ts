@@ -74,7 +74,7 @@ export class UserController {
     userToStore.email = user.email;
     userToStore.password = hashedPassword;
     userToStore.username = user.username;
-    return await this.userRepo.create(userToStore);;
+    return await this.userRepo.create(userToStore);
   }
 
   @post('/login')

@@ -18,7 +18,8 @@ exports.up = function (db, callback) {
   db.createTable('item', {
     iditem: {
       type: 'int',
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     itemname: {
       type: 'string',

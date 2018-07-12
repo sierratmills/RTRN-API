@@ -18,17 +18,14 @@ exports.up = function (db, callback) {
   db.createTable('order', {
     idorder: {
       type: 'int',
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
-    address: {
+    store: {
       type: 'string',
       length: 45
     },
-    payment: {
-      type: 'string',
-      length: 45
-    },
-    receipt: {
+    date: {
       type: 'string',
       length: 45
     },
