@@ -10,4 +10,5 @@ export declare class UserController {
     loginUser(user: User): Promise<{
         token: string;
     }>;
+    editUserInfo(user: User, jwt: string): Promise<void>;
 }

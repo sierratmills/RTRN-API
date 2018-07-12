@@ -72,7 +72,7 @@ let UserController = class UserController {
             throw new rest_1.HttpErrors.Unauthorized('invalid credentials');
         }
         // Check that email and password are valid
-        let userExists = !!(await this.userRepo.count({
+        let userExists = !(await this.userRepo.count({
             and: [
                 { email: user.email },
                 { password: user.password },
@@ -103,6 +103,45 @@ let UserController = class UserController {
         return {
             token: jwt
         };
+    }
+    async editUserInfo(user, jwt) {
+        var payload;
+        try {
+            payload = jsonwebtoken_1.verify(jwt, "shh");
+        }
+        catch (err) {
+            throw new rest_1.HttpErrors.Unauthorized("Invalid token");
+        }
+        let foundUser = await this.userRepo.findOne({
+            where: {
+                and: [
+                    { id: payload.user.id },
+                ],
+            },
+        });
+        if (user.firstname != "") {
+            foundUser.firstname = user.firstname;
+        }
+        if (user.lastname != "") {
+            foundUser.lastname = user.lastname;
+        }
+        if (user.email != "") {
+            if (await this.userRepo.count({ email: user.email })) {
+                throw new rest_1.HttpErrors.BadRequest('email already taken');
+            }
+            else {
+                foundUser.email = user.email;
+            }
+        }
+        if (user.username != "") {
+            if (await this.userRepo.count({ username: user.username })) {
+                throw new rest_1.HttpErrors.BadRequest('username already taken');
+            }
+            else {
+                foundUser.username = user.username;
+            }
+        }
+        this.userRepo.save(foundUser);
     }
 };
 __decorate([
@@ -139,6 +178,13 @@ __decorate([
     __metadata("design:paramtypes", [user_1.User]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "loginUser", null);
+__decorate([
+    rest_1.put('/editprofile'),
+    __param(0, rest_1.requestBody()), __param(1, rest_1.param.query.string("jwt")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [user_1.User, String]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "editUserInfo", null);
 UserController = __decorate([
     __param(0, repository_1.repository(user_repository_1.UserRepository.name)),
     __metadata("design:paramtypes", [user_repository_1.UserRepository])

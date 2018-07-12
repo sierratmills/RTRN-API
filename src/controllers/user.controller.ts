@@ -1,4 +1,4 @@
-import { get, param, requestBody, post, HttpErrors } from "@loopback/rest";
+import { get, param, requestBody, post, HttpErrors, put } from "@loopback/rest";
 import { repository } from "@loopback/repository";
 import { UserRepository } from "../repositories/user.repository";
 import { Class, Repository, RepositoryMixin, juggler } from '@loopback/repository';
@@ -22,11 +22,11 @@ export class UserController {
   verifyToken(@param.query.string("jwt") jwt: string) {
 
     try {
-        let payload = verify(jwt, "shh");
-        return payload;
-        
+      let payload = verify(jwt, "shh");
+      return payload;
+
     } catch (err) {
-        throw new HttpErrors.Unauthorized("Invalid token");
+      throw new HttpErrors.Unauthorized("Invalid token");
     }
 
     // The user is authenticated and we can process...
@@ -59,19 +59,19 @@ export class UserController {
     if (!user.email || !user.password || !user.username || !user.firstname || !user.lastname) {
       throw new HttpErrors.BadRequest('user is missing data');
     }
-    if (await this.userRepo.count({ email : user.email})) {
+    if (await this.userRepo.count({ email: user.email })) {
       throw new HttpErrors.BadRequest('user already exists');
-    } 
-    if (await this.userRepo.count({ username : user.username})) {
+    }
+    if (await this.userRepo.count({ username: user.username })) {
       throw new HttpErrors.BadRequest('username already exists');
-    } 
+    }
 
     let hashedPassword = await bcrypt.hash(user.password, 10);
-    var userToStore = new User();   
-    userToStore.id = user.id;   
-    userToStore.firstname = user.firstname;   
-    userToStore.lastname = user.lastname;   
-    userToStore.email = user.email;   
+    var userToStore = new User();
+    userToStore.id = user.id;
+    userToStore.firstname = user.firstname;
+    userToStore.lastname = user.lastname;
+    userToStore.email = user.email;
     userToStore.password = hashedPassword;
     return await this.userRepo.create(userToStore);;
   }
@@ -104,24 +104,66 @@ export class UserController {
     }) as User;
 
     if (!await bcrypt.compare(user.password, foundUser.password)) {
-      throw new HttpErrors.Unauthorized('invalid credentials');   
-  }
+      throw new HttpErrors.Unauthorized('invalid credentials');
+    }
 
     let jwt = sign({
-        user: {
-            id: foundUser.id,
-            email: foundUser.email
-        }
-    }, 
-    "shh", 
-    {
+      user: {
+        id: foundUser.id,
+        email: foundUser.email
+      }
+    },
+      "shh",
+      {
         issuer: "auth.ix.com",
         audience: "ix.com"
-    });
+      });
 
     return {
-        token: jwt
+      token: jwt
     };
   }
 
+  @put('/editprofile')
+  async editUserInfo(@requestBody() user: User, @param.query.string("jwt") jwt: string) {
+    var payload;
+    try {
+      payload = verify(jwt, "shh") as any;
+
+    } catch (err) {
+      throw new HttpErrors.Unauthorized("Invalid token");
+    }
+
+    let foundUser = await this.userRepo.findOne({
+      where: {
+        and: [
+         { id: payload.user.id },
+        ],
+      },
+    }) as User;
+
+    if (user.firstname != "") {
+      foundUser.firstname = user.firstname;
+    }
+    if (user.lastname != "") {
+      foundUser.lastname = user.lastname;
+    }
+    if (user.email != "") {
+      if (await this.userRepo.count({ email: user.email })) {
+        throw new HttpErrors.BadRequest('email already taken');
+      } else {
+        foundUser.email = user.email;
+      }
+    }
+    if (user.username != "") {
+      if (await this.userRepo.count({ username: user.username })) {
+        throw new HttpErrors.BadRequest('username already taken');
+      } else {
+        foundUser.username = user.username;
+      }
+    }
+
+    this.userRepo.save(foundUser);
+
+  }
 }
