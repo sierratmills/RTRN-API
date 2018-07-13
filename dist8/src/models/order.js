@@ -28,6 +28,12 @@ __decorate([
 ], Order.prototype, "store", void 0);
 __decorate([
     repository_1.property({
+        type: "number",
+    }),
+    __metadata("design:type", String)
+], Order.prototype, "price", void 0);
+__decorate([
+    repository_1.property({
         type: "string",
     }),
     __metadata("design:type", String)

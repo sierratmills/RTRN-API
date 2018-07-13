@@ -5,6 +5,6 @@
     "port": "3306",
     "user": "root",
     "password": "qwerty123",
-    "database": "RTRNdata"
+    "database": "RTRNschema"
   }
 }

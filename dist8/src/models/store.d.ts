@@ -4,4 +4,5 @@ export declare class Store extends Entity {
     storename: string;
     storetype: string;
     url: string;
+    returnurl: string;
 }

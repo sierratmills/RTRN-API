@@ -28,16 +28,16 @@ __decorate([
 ], Item.prototype, "itemname", void 0);
 __decorate([
     repository_1.property({
-        type: "string"
+        type: "number"
     }),
-    __metadata("design:type", String)
-], Item.prototype, "price", void 0);
+    __metadata("design:type", Number)
+], Item.prototype, "storeid", void 0);
 __decorate([
     repository_1.property({
         type: "number"
     }),
     __metadata("design:type", Number)
-], Item.prototype, "storeid", void 0);
+], Item.prototype, "orderid", void 0);
 Item = __decorate([
     repository_1.model({
         name: "item"

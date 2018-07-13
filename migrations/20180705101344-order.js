@@ -30,7 +30,7 @@ exports.up = function (db, callback) {
       length: 45
     },
     price: {
-      type: 'number',
+      type: 'int',
       length: 45
     },
     userid: {

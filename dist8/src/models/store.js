@@ -38,6 +38,12 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], Store.prototype, "url", void 0);
+__decorate([
+    repository_1.property({
+        type: "string",
+    }),
+    __metadata("design:type", String)
+], Store.prototype, "returnurl", void 0);
 Store = __decorate([
     repository_1.model({
         name: "store"
