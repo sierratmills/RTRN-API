@@ -9,7 +9,7 @@ import {
   Class,
   Repository,
   RepositoryMixin,
-  juggler
+  juggler,
 } from '@loopback/repository';
 /* tslint:enable:no-unused-variable */
 
