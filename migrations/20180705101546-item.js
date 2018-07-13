@@ -25,26 +25,6 @@ exports.up = function (db, callback) {
       type: 'string',
       length: 45
     },
-    itemtype: {
-      type: 'string',
-      length: 45
-    },
-    price: {
-      type: 'string',
-      length: 45
-    },
-    url: {
-      type: 'string',
-      length: 45
-    },
-    image: {
-      type: 'string',
-      length: 45
-    },
-    size: {
-      type: 'string',
-      length: 45
-    },
     storeid: {
       type: 'int',
       foreignKey: {
@@ -55,6 +35,18 @@ exports.up = function (db, callback) {
           onUpdate: 'RESTRICT'
         },
         mapping: 'idstore'
+      }
+    },
+    orderid: {
+      type: 'int',
+      foreignKey: {
+        name: 'item_order_fk',
+        table: 'order',
+        rules: {
+          onDelete: 'CASCADE',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'idorder'
       }
     }
   }, callback);

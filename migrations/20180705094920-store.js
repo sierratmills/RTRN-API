@@ -32,6 +32,10 @@ exports.up = function (db, callback) {
     url: {
       type: 'string',
       length: 45
+    },
+    returnurl: {
+      type: 'string',
+      length: 500
     }
   }, callback);
 };

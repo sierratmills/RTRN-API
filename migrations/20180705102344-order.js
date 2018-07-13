@@ -29,6 +29,10 @@ exports.up = function (db, callback) {
       type: 'string',
       length: 45
     },
+    price: {
+      type: 'number',
+      length: 45
+    },
     userid: {
       type: 'int',
       foreignKey: {

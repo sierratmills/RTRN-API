@@ -27,4 +27,9 @@ export class Store extends Entity {
     })
     url: string;
 
+    @property({
+        type: "string",
+    })
+    returnurl: string;
+
 }

@@ -18,6 +18,11 @@ export class Order extends Entity {
     store: string;
 
     @property({
+        type: "number",
+    })
+    price: string;
+
+    @property({
         type: "string",
     })
     date: string;
