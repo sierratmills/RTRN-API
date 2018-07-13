@@ -1,7 +1,10 @@
-import { get, param, requestBody, post } from "@loopback/rest";
+import { get, param, requestBody, post, writeResultToResponse } from "@loopback/rest";
 import { repository } from "@loopback/repository";
 import { Store } from "../models/store";
 import { StoreRepository } from "../repositories/store.repository";
+import{ Http } from '@angular/http';
+import {Inject} from "@angular/core";
+
 
 
 // Uncomment these imports to begin using these cool features!
@@ -12,8 +15,7 @@ import { StoreRepository } from "../repositories/store.repository";
 export class StoreController {
 
   constructor(
-    @repository(StoreRepository.name) private userRepo: StoreRepository
-  ) { }
+    @repository(StoreRepository.name) private userRepo: StoreRepository, @Inject(Http) private http: Http) { }
 
   @get("/stores")
   async getAllStores(
@@ -39,10 +41,4 @@ export class StoreController {
     return createdStore;
   }
 
-  @post("/findStores")
-  async findStores(
-    @requestBody() category: String, zipcode: String){
-      //search uses google maps api
-      //create stores in database for results if they dont already exist
-    }
 }

@@ -16,11 +16,14 @@ const rest_1 = require("@loopback/rest");
 const repository_1 = require("@loopback/repository");
 const store_1 = require("../models/store");
 const store_repository_1 = require("../repositories/store.repository");
+const http_1 = require("@angular/http");
+const core_1 = require("@angular/core");
 // Uncomment these imports to begin using these cool features!
 // import {inject} from '@loopback/context';
 let StoreController = class StoreController {
-    constructor(userRepo) {
+    constructor(userRepo, http) {
         this.userRepo = userRepo;
+        this.http = http;
     }
     async getAllStores(storename) {
         return await this.userRepo.find();
@@ -31,10 +34,6 @@ let StoreController = class StoreController {
     async createStore(store) {
         let createdStore = await this.userRepo.create(store);
         return createdStore;
-    }
-    async findStores(category, zipcode) {
-        //search uses google maps api
-        //create stores in database for results if they dont already exist
     }
 };
 __decorate([
@@ -58,16 +57,9 @@ __decorate([
     __metadata("design:paramtypes", [store_1.Store]),
     __metadata("design:returntype", Promise)
 ], StoreController.prototype, "createStore", null);
-__decorate([
-    rest_1.post("/findStores"),
-    __param(0, rest_1.requestBody()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, String]),
-    __metadata("design:returntype", Promise)
-], StoreController.prototype, "findStores", null);
 StoreController = __decorate([
-    __param(0, repository_1.repository(store_repository_1.StoreRepository.name)),
-    __metadata("design:paramtypes", [store_repository_1.StoreRepository])
+    __param(0, repository_1.repository(store_repository_1.StoreRepository.name)), __param(1, core_1.Inject(http_1.Http)),
+    __metadata("design:paramtypes", [store_repository_1.StoreRepository, http_1.Http])
 ], StoreController);
 exports.StoreController = StoreController;
 //# sourceMappingURL=store.controller.js.map
