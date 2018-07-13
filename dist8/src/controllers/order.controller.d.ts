@@ -6,5 +6,6 @@ export declare class OrderController {
     verifyToken(jwt: string): any;
     getAllOrders(ordername: string): Promise<Array<Order>>;
     getSpecificOrder(orderId: string): any;
+    getOrderHistory(userId: string): Promise<Order>;
     createOrder(order: Order): Promise<Order>;
 }

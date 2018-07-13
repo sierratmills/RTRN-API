@@ -15,7 +15,8 @@ let Item = class Item extends repository_1.Entity {
 __decorate([
     repository_1.property({
         type: "number",
-        id: true
+        id: true,
+        autoincrement: true,
     }),
     __metadata("design:type", Number)
 ], Item.prototype, "iditem", void 0);
@@ -27,40 +28,16 @@ __decorate([
 ], Item.prototype, "itemname", void 0);
 __decorate([
     repository_1.property({
-        type: "string",
-    }),
-    __metadata("design:type", String)
-], Item.prototype, "itemtype", void 0);
-__decorate([
-    repository_1.property({
         type: "string"
     }),
     __metadata("design:type", String)
 ], Item.prototype, "price", void 0);
 __decorate([
     repository_1.property({
-        type: "string"
-    }),
-    __metadata("design:type", String)
-], Item.prototype, "url", void 0);
-__decorate([
-    repository_1.property({
         type: "number"
     }),
     __metadata("design:type", Number)
 ], Item.prototype, "storeid", void 0);
-__decorate([
-    repository_1.property({
-        type: "string"
-    }),
-    __metadata("design:type", String)
-], Item.prototype, "image", void 0);
-__decorate([
-    repository_1.property({
-        type: "string"
-    }),
-    __metadata("design:type", String)
-], Item.prototype, "size", void 0);
 Item = __decorate([
     repository_1.model({
         name: "item"

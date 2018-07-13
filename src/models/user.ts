@@ -7,7 +7,8 @@ import { property, Entity, model } from "@loopback/repository";
 export class User extends Entity {
     @property({
         type: "number",
-        id: true
+        id: true,
+        autoincrement: true,
     })
     id: number;
 

@@ -15,7 +15,8 @@ let location = class location extends repository_1.Entity {
 __decorate([
     repository_1.property({
         type: "number",
-        id: true
+        id: true,
+        autoincrement: true,
     }),
     __metadata("design:type", Number)
 ], location.prototype, "idlocation", void 0);

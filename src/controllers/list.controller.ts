@@ -32,7 +32,7 @@ export class OrderController {
 
   }
 
-  @post("/list")
+  @post("/createlist")
   async createList(
     @requestBody() list: List
   ): Promise<List> {

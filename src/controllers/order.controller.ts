@@ -41,15 +41,31 @@ export class OrderController {
     @param.path.string("orderId") orderId: string
   ): any {
     let orderArr = this.getAllOrders;
-    return "Not found";
-
+    return orderArr;
   }
 
-  @post("/orders")
+  @get("/orderhistory")
+  async getOrderHistory(
+    @param.path.string("userId") userId: string
+  ): Promise<Order> {
+    let foundOrder = await this.orderRepo.findOne({
+      where: {
+        and: [
+          { userid: userId }
+        ],
+      },
+    }) as Order;
+    return foundOrder;
+  }
+
+  @post("/createorder")
   async createOrder(
     @requestBody() order: Order
   ): Promise<Order> {
-    let createdOrder = await this.orderRepo.create(order);
-    return createdOrder;
+    var orderToStore = new Order();
+    orderToStore.id = order.id;
+    orderToStore.store = order.store;
+    orderToStore.date = order.date;
+    return await this.orderRepo.create(orderToStore);
   }
 }

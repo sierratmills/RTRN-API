@@ -8,7 +8,8 @@ export class List extends Entity {
 
   @property({
     type: "number",
-    id: true
+    id: true,
+    autoincrement: true,
   })
   idlist: number;
 

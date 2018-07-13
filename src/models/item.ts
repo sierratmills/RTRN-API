@@ -8,7 +8,8 @@ export class Item extends Entity {
 
   @property({
     type: "number",
-    id: true
+    id: true,
+    autoincrement: true,
   })
   iditem: number;
 
@@ -18,32 +19,13 @@ export class Item extends Entity {
   itemname: string;
 
   @property({
-    type: "string",
-  })
-  itemtype: string;
-
-  @property({
-    type: "string"
-  })
-  price: string;
-
-  @property({
-    type: "string"
-  })
-  url: string;
-
-  @property({
     type: "number"
   })
   storeid: number;
 
   @property({
-    type: "string"
+    type: "number"
   })
-  image: string;
+  orderid: number;
 
-  @property({
-    type: "string"
-  })
-  size: string;
 }

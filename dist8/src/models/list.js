@@ -15,7 +15,8 @@ let List = class List extends repository_1.Entity {
 __decorate([
     repository_1.property({
         type: "number",
-        id: true
+        id: true,
+        autoincrement: true,
     }),
     __metadata("design:type", Number)
 ], List.prototype, "idlist", void 0);

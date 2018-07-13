@@ -38,11 +38,24 @@ let OrderController = class OrderController {
     }
     getSpecificOrder(orderId) {
         let orderArr = this.getAllOrders;
-        return "Not found";
+        return orderArr;
+    }
+    async getOrderHistory(userId) {
+        let foundOrder = await this.orderRepo.findOne({
+            where: {
+                and: [
+                    { userid: userId }
+                ],
+            },
+        });
+        return foundOrder;
     }
     async createOrder(order) {
-        let createdOrder = await this.orderRepo.create(order);
-        return createdOrder;
+        var orderToStore = new Order_1.Order();
+        orderToStore.id = order.id;
+        orderToStore.store = order.store;
+        orderToStore.date = order.date;
+        return await this.orderRepo.create(orderToStore);
     }
 };
 __decorate([
@@ -67,7 +80,14 @@ __decorate([
     __metadata("design:returntype", Object)
 ], OrderController.prototype, "getSpecificOrder", null);
 __decorate([
-    rest_1.post("/orders"),
+    rest_1.get("/orderhistory"),
+    __param(0, rest_1.param.path.string("userId")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], OrderController.prototype, "getOrderHistory", null);
+__decorate([
+    rest_1.post("/createorder"),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Order_1.Order]),

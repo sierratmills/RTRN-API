@@ -66,7 +66,6 @@ let UserController = class UserController {
         userToStore.password = hashedPassword;
         userToStore.username = user.username;
         return await this.userRepo.create(userToStore);
-        ;
     }
     async loginUser(user) {
         // Check that email and password are both supplied

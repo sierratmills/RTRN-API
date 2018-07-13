@@ -7,24 +7,25 @@ import { property, Entity, model } from "@loopback/repository";
 export class Order extends Entity {
     @property({
         type: "number",
-        id: true
+        id: true,
+        autoincrement: true,
     })
     idorder: number;
 
     @property({
         type: "string",
     })
-    address: string;
+    store: string;
+
+    @property({
+        type: "number",
+    })
+    price: string;
 
     @property({
         type: "string",
     })
-    payment: string;
-
-    @property({
-        type: "string",
-    })
-    receipt: string;
+    date: string;
 
     @property({
         type: "number"

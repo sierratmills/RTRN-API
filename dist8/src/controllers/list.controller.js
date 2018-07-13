@@ -48,7 +48,7 @@ __decorate([
     __metadata("design:returntype", Object)
 ], OrderController.prototype, "getSpecificList", null);
 __decorate([
-    rest_1.post("/list"),
+    rest_1.post("/createlist"),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [List_1.List]),

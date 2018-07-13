@@ -18,7 +18,8 @@ exports.up = function (db, callback) {
   db.createTable('list_item_map', {
     idlist_item_map: {
       type: 'int',
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     listname: {
       type: 'string',

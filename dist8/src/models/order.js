@@ -15,7 +15,8 @@ let Order = class Order extends repository_1.Entity {
 __decorate([
     repository_1.property({
         type: "number",
-        id: true
+        id: true,
+        autoincrement: true,
     }),
     __metadata("design:type", Number)
 ], Order.prototype, "idorder", void 0);
@@ -24,19 +25,13 @@ __decorate([
         type: "string",
     }),
     __metadata("design:type", String)
-], Order.prototype, "address", void 0);
+], Order.prototype, "store", void 0);
 __decorate([
     repository_1.property({
         type: "string",
     }),
     __metadata("design:type", String)
-], Order.prototype, "payment", void 0);
-__decorate([
-    repository_1.property({
-        type: "string",
-    }),
-    __metadata("design:type", String)
-], Order.prototype, "receipt", void 0);
+], Order.prototype, "date", void 0);
 __decorate([
     repository_1.property({
         type: "number"

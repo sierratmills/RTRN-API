@@ -15,7 +15,8 @@ let User = class User extends repository_1.Entity {
 __decorate([
     repository_1.property({
         type: "number",
-        id: true
+        id: true,
+        autoincrement: true,
     }),
     __metadata("design:type", Number)
 ], User.prototype, "id", void 0);

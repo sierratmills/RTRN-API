@@ -7,7 +7,8 @@ import { property, Entity, model } from "@loopback/repository";
 export class Store extends Entity {
     @property({
         type: "number",
-        id: true
+        id: true,
+        autoincrement: true,
     })
     idstore: number;
 
@@ -25,5 +26,10 @@ export class Store extends Entity {
         type: "string",
     })
     url: string;
+
+    @property({
+        type: "string",
+    })
+    returnurl: string;
 
 }
