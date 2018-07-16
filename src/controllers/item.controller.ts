@@ -51,7 +51,7 @@ export class OrderController {
     var itemToStore = new Item();
     itemToStore.iditem = item.iditem;
     itemToStore.itemname = item.itemname;
-    itemToStore.storeid = item.storeid;
+    itemToStore.storename = item.storename;
     itemToStore.orderid = item.orderid;
     return await this.itemRepo.create(itemToStore);
   }

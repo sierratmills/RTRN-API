@@ -16,14 +16,11 @@ const rest_1 = require("@loopback/rest");
 const repository_1 = require("@loopback/repository");
 const store_1 = require("../models/store");
 const store_repository_1 = require("../repositories/store.repository");
-const http_1 = require("@angular/http");
-const core_1 = require("@angular/core");
 // Uncomment these imports to begin using these cool features!
 // import {inject} from '@loopback/context';
 let StoreController = class StoreController {
-    constructor(userRepo, http) {
+    constructor(userRepo) {
         this.userRepo = userRepo;
-        this.http = http;
     }
     async getAllStores(storename) {
         return await this.userRepo.find();
@@ -58,8 +55,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], StoreController.prototype, "createStore", null);
 StoreController = __decorate([
-    __param(0, repository_1.repository(store_repository_1.StoreRepository.name)), __param(1, core_1.Inject(http_1.Http)),
-    __metadata("design:paramtypes", [store_repository_1.StoreRepository, http_1.Http])
+    __param(0, repository_1.repository(store_repository_1.StoreRepository.name)),
+    __metadata("design:paramtypes", [store_repository_1.StoreRepository])
 ], StoreController);
 exports.StoreController = StoreController;
 //# sourceMappingURL=store.controller.js.map

@@ -25,17 +25,9 @@ exports.up = function (db, callback) {
       type: 'string',
       length: 45
     },
-    storeid: {
-      type: 'int',
-      foreignKey: {
-        name: 'item_store_fk',
-        table: 'store',
-        rules: {
-          onDelete: 'CASCADE',
-          onUpdate: 'RESTRICT'
-        },
-        mapping: 'idstore'
-      }
+    storename: {
+      type: 'string',
+      length: 45
     },
     orderid: {
       type: 'int',

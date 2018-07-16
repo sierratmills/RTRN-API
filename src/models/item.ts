@@ -19,9 +19,9 @@ export class Item extends Entity {
   itemname: string;
 
   @property({
-    type: "number"
+    type: "string"
   })
-  storeid: number;
+  storename: string;
 
   @property({
     type: "number"
