@@ -2,9 +2,6 @@ import { get, param, requestBody, post, writeResultToResponse } from "@loopback/
 import { repository } from "@loopback/repository";
 import { Store } from "../models/store";
 import { StoreRepository } from "../repositories/store.repository";
-import{ Http } from '@angular/http';
-import {Inject} from "@angular/core";
-
 
 
 // Uncomment these imports to begin using these cool features!
@@ -15,7 +12,7 @@ import {Inject} from "@angular/core";
 export class StoreController {
 
   constructor(
-    @repository(StoreRepository.name) private userRepo: StoreRepository, @Inject(Http) private http: Http) { }
+    @repository(StoreRepository.name) private userRepo: StoreRepository) { }
 
   @get("/stores")
   async getAllStores(
