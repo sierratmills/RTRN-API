@@ -2,7 +2,10 @@ import { get, param, requestBody, post, writeResultToResponse } from "@loopback/
 import { repository } from "@loopback/repository";
 import { Store } from "../models/store";
 import { StoreRepository } from "../repositories/store.repository";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 37745c33d7c05a2dc33ce4b584e7ad294e46b460
 
 
 // Uncomment these imports to begin using these cool features!

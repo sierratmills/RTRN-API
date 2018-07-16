@@ -41,7 +41,7 @@ export class RTRNApiApplication extends BootMixin(
       port: 3306,
       database: 'RTRNschema',
       user: 'root',
-      password: 'qwerty123'
+      password: ''
 
     });
     this.dataSource(dataSourceConfig);

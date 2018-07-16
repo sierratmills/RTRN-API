@@ -32,7 +32,6 @@
     "prestart": "npm run build:current",
     "start": "node .",
     "prepublishOnly": "npm run test",
-
     "sierra": "DATABASE_PASSWORD=qwerty123 VARIABLE_SOMETHING=lol npm start"
   },
   "repository": {
