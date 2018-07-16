@@ -36,12 +36,18 @@ export class OrderController {
     return await this.itemRepo.find();
   }
 
-  @get("/item/itemid")
-  getSpecificItem(
-    @param.path.string("itemId") itemId: string
-  ): any {
-    let itemArr = this.getAllItems;
-    return itemArr;
+  @get("/orderhistory")
+  async getSpecificItem(
+    @param.path.number("orderId") orderId: number
+  ): Promise<Item[]> {
+    let foundItems= await this.itemRepo.find({
+      where: {
+        and: [
+          { orderid: orderId }
+        ],
+      },
+    }) as Item[];
+    return foundItems;
   }
 
   @post("/createitem")

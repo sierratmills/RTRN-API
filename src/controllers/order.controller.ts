@@ -46,16 +46,16 @@ export class OrderController {
 
   @get("/orderhistory")
   async getOrderHistory(
-    @param.path.string("userId") userId: string
-  ): Promise<Order> {
-    let foundOrder = await this.orderRepo.findOne({
+    @param.path.number("userId") userId: number
+  ): Promise<Order[]> {
+    let foundOrders = await this.orderRepo.find({
       where: {
         and: [
           { userid: userId }
         ],
       },
-    }) as Order;
-    return foundOrder;
+    }) as Order[];
+    return foundOrders;
   }
 
   @post("/createorder")
@@ -63,7 +63,8 @@ export class OrderController {
     @requestBody() order: Order
   ): Promise<Order> {
     var orderToStore = new Order();
-    orderToStore.id = order.id;
+    orderToStore.price = order.price;
+    orderToStore.userid = order.userid;
     orderToStore.store = order.store;
     orderToStore.date = order.date;
     return await this.orderRepo.create(orderToStore);
