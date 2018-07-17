@@ -32,4 +32,24 @@ export class Store extends Entity {
     })
     returnurl: string;
 
+    @property({
+        type: "string",
+    })
+    address: string;
+
+    @property({
+        type: "string",
+    })
+    lat: string;
+
+    @property({
+        type: "string",
+    })
+    long: string;
+
+    @property({
+        type: "number",
+    })
+    googleid: number;
+
 }

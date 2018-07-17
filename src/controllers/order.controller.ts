@@ -3,6 +3,7 @@ import { repository } from "@loopback/repository";
 import { OrderRepository } from "../repositories/Order.repository";
 import { Order } from "../models/Order";
 import { verify } from "jsonwebtoken";
+import { Item } from "../models/item";
 
 
 // Uncomment these imports to begin using these cool features!
@@ -11,6 +12,7 @@ import { verify } from "jsonwebtoken";
 
 
 export class OrderController {
+  itemRepo: any;
 
   constructor(
     @repository(OrderRepository.name) private orderRepo: OrderRepository
@@ -46,16 +48,16 @@ export class OrderController {
 
   @get("/orderhistory")
   async getOrderHistory(
-    @param.path.string("userId") userId: string
-  ): Promise<Order> {
-    let foundOrder = await this.orderRepo.findOne({
+    @param.path.number("userId") userId: number
+  ): Promise<Order[]> {
+    let foundOrders = await this.orderRepo.find({
       where: {
         and: [
           { userid: userId }
         ],
       },
-    }) as Order;
-    return foundOrder;
+    }) as Order[];
+    return foundOrders;
   }
 
   @post("/createorder")
@@ -63,7 +65,8 @@ export class OrderController {
     @requestBody() order: Order
   ): Promise<Order> {
     var orderToStore = new Order();
-    orderToStore.id = order.id;
+    orderToStore.price = order.price;
+    orderToStore.userid = order.userid;
     orderToStore.store = order.store;
     orderToStore.date = order.date;
     return await this.orderRepo.create(orderToStore);

@@ -17,7 +17,11 @@ export class RTRNApiApplication extends BootMixin(
   RepositoryMixin(RestApplication)
 ) {
   constructor(options?: ApplicationConfig) {
-    super(options);
+    super({
+      rest: {
+        port: process.env.PORT || 3000
+      }
+    });
 
     // Set up the custom sequence
     this.sequence(MySequence);
@@ -36,12 +40,15 @@ export class RTRNApiApplication extends BootMixin(
     // Use below for an in-memory database
     var dataSourceConfig = new juggler.DataSource({
       name: "db",
-      connector: 'loopback-connector-mysql',
+      connector: "memory",
+     
+  //   name: "db",
+    //  connector: 'loopback-connector-mysql',
       host: 'localhost',
       port: 3306,
       database: 'RTRNschema',
       user: 'root',
-      password: ''
+      password: 'qwerty123'
 
     });
     this.dataSource(dataSourceConfig);

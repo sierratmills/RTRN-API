@@ -29,7 +29,19 @@ exports.up = function (db, callback) {
       type: 'string',
       length: 45
     },
+    lat: {
+      type: 'string',
+      length: 45
+    },
+    long: {
+      type: 'string',
+      length: 45
+    },
     url: {
+      type: 'string',
+      length: 45
+    },
+    address: {
       type: 'string',
       length: 45
     },
