@@ -12,7 +12,6 @@ import { Item } from "../models/item";
 
 
 export class OrderController {
-  itemRepo: any;
 
   constructor(
     @repository(OrderRepository.name) private orderRepo: OrderRepository
