@@ -1,6 +1,6 @@
 import { get, param, requestBody, post } from "@loopback/rest";
 import { repository } from "@loopback/repository";
-import { ListRepository } from "../repositories/List.repository";
+import { ListRepository } from "../repositories/list.repository";
 import { Class, Repository, RepositoryMixin, juggler } from '@loopback/repository';
 import { List } from "../models/List";
 

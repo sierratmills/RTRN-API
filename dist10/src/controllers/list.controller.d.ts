@@ -1,4 +1,4 @@
-import { ListRepository } from "../repositories/List.repository";
+import { ListRepository } from "../repositories/list.repository";
 import { List } from "../models/List";
 export declare class OrderController {
     private listRepo;

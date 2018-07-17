@@ -34,9 +34,9 @@ class RTRNApiApplication extends boot_1.BootMixin(repository_1.RepositoryMixin(r
             //  connector: 'loopback-connector-mysql',
             host: 'localhost',
             port: 3306,
-            database: 'RTRNschema',
+            database: 'RTRNdatabase',
             user: 'root',
-            password: 'qwerty123'
+            password: ''
         });
         this.dataSource(dataSourceConfig);
     }
