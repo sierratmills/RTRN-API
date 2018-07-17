@@ -1,5 +1,5 @@
 import { ItemRepository } from "../repositories/item.repository";
-import { Item } from "../models/Item";
+import { Item } from "../models/item";
 export declare class OrderController {
     private itemRepo;
     constructor(itemRepo: ItemRepository);
