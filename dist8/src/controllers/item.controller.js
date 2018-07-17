@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const rest_1 = require("@loopback/rest");
 const repository_1 = require("@loopback/repository");
 const item_repository_1 = require("../repositories/item.repository");
-const Item_1 = require("../models/Item");
+const Item_1 = require("../models/item");
 const jsonwebtoken_1 = require("jsonwebtoken");
 // Uncomment these imports to begin using these cool features!
 // import {inject} from '@loopback/context';
