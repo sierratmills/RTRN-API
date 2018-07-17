@@ -29,8 +29,16 @@ let StoreController = class StoreController {
         return "Not found";
     }
     async createStore(store) {
-        let createdStore = await this.userRepo.create(store);
-        return createdStore;
+        var storeToStore = new store_1.Store();
+        storeToStore.storename = store.storename;
+        storeToStore.storetype = store.storetype;
+        storeToStore.url = store.url;
+        storeToStore.returnurl = store.returnurl;
+        storeToStore.address = store.address;
+        storeToStore.lat = store.lat;
+        storeToStore.long = store.long;
+        storeToStore.googleid = store.googleid;
+        return await this.storeRepo.createStore(storeToStore);
     }
 };
 __decorate([
@@ -48,7 +56,7 @@ __decorate([
     __metadata("design:returntype", Object)
 ], StoreController.prototype, "getSpecificStore", null);
 __decorate([
-    rest_1.post("/stores"),
+    rest_1.post("/createstore"),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [store_1.Store]),

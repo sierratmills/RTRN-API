@@ -31,7 +31,7 @@ export class StoreController {
 
   }
 
-  @post("/createStore")
+  @post("/createstore")
   async createStore(
     @requestBody() store: Store
   ): Promise<Store> {
