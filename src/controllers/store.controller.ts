@@ -10,16 +10,15 @@ import { StoreRepository } from "../repositories/store.repository";
 
 
 export class StoreController {
-  storeRepo: any;
 
   constructor(
-    @repository(StoreRepository.name) private userRepo: StoreRepository) { }
+    @repository(StoreRepository.name) private storeRepo: StoreRepository) { }
 
   @get("/stores")
   async getAllStores(
     @param.query.string("storename") storename: string
   ): Promise<Array<Store>> {
-    return await this.userRepo.find();
+    return await this.storeRepo.find();
   }
 
   @get("/store/storeid")
@@ -44,7 +43,7 @@ export class StoreController {
     storeToStore.lat = store.lat;
     storeToStore.long = store.long;
     storeToStore.googleid = store.googleid;
-    return await this.storeRepo.createStore(storeToStore);
+    return await this.storeRepo.create(storeToStore);
 
   }
 
