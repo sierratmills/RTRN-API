@@ -4,7 +4,7 @@
     "host": "localhost",
     "port": "3306",
     "user": "root",
-    "password": "qwerty123",
-    "database": "RTRNschema"
+    "password": "",
+    "database": "RTRNdatabase"
   }
 }

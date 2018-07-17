@@ -44,6 +44,30 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], Store.prototype, "returnurl", void 0);
+__decorate([
+    repository_1.property({
+        type: "string",
+    }),
+    __metadata("design:type", String)
+], Store.prototype, "address", void 0);
+__decorate([
+    repository_1.property({
+        type: "string",
+    }),
+    __metadata("design:type", String)
+], Store.prototype, "lat", void 0);
+__decorate([
+    repository_1.property({
+        type: "string",
+    }),
+    __metadata("design:type", String)
+], Store.prototype, "long", void 0);
+__decorate([
+    repository_1.property({
+        type: "number",
+    }),
+    __metadata("design:type", Number)
+], Store.prototype, "googleid", void 0);
 Store = __decorate([
     repository_1.model({
         name: "store"
