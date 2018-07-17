@@ -33,7 +33,7 @@
     "start": "node .",
     "prepublishOnly": "npm run test",
     "live": "db-migrate up && node .",
-    "sierra": "DATABASE_PASSWORD=qwerty123 VARIABLE_SOMETHING=lol npm start"
+    "sierra": "export DB_PASSWORD=ixperience2018 && export DB_HOST=ix-fs-1.ce5d5ftkvwyr.eu-west-1.rds.amazonaws.com DB_DATABASE=rtrn-schema && export DB_PORT=3306 && export DB_USER=ix_fs_1 && export NODE_ENV=live && db-migrate up"
   },
   "repository": {
     "type": "git"
