@@ -1,7 +1,7 @@
 import { get, param, requestBody, post, HttpErrors } from "@loopback/rest";
 import { repository } from "@loopback/repository";
 import { OrderRepository } from "../repositories/Order.repository";
-import { Order } from "../models/Order";
+import { Order } from "../models/order";
 import { verify } from "jsonwebtoken";
 import { Item } from "../models/item";
 

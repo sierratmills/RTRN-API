@@ -4,7 +4,7 @@ import { get, param, requestBody, post } from "@loopback/rest";
 import { repository } from "@loopback/repository";
 import { ItemRepository } from "../repositories/item.repository";
 import { Class, Repository, RepositoryMixin, juggler } from '@loopback/repository';
-import { Item } from "../models/Item";
+import { Item } from "../models/item";
 
 
 // Uncomment these imports to begin using these cool features!

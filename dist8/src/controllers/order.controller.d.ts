@@ -1,5 +1,5 @@
 import { OrderRepository } from "../repositories/Order.repository";
-import { Order } from "../models/Order";
+import { Order } from "../models/order";
 export declare class OrderController {
     private orderRepo;
     constructor(orderRepo: OrderRepository);
