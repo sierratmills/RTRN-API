@@ -10,6 +10,7 @@ import { StoreRepository } from "../repositories/store.repository";
 
 
 export class StoreController {
+  storeRepo: any;
 
   constructor(
     @repository(StoreRepository.name) private userRepo: StoreRepository) { }
@@ -30,12 +31,21 @@ export class StoreController {
 
   }
 
-  @post("/stores")
+  @post("/createStore")
   async createStore(
     @requestBody() store: Store
   ): Promise<Store> {
-    let createdStore = await this.userRepo.create(store);
-    return createdStore;
+    var storeToStore = new Store();
+    storeToStore.storename = store.storename;
+    storeToStore.storetype = store.storetype;
+    storeToStore.url = store.url;
+    storeToStore.returnurl = store.returnurl;
+    storeToStore.address = store.address;
+    storeToStore.lat = store.lat;
+    storeToStore.long = store.long;
+    storeToStore.googleid = store.googleid;
+    return await this.storeRepo.createStore(storeToStore);
+
   }
 
 }

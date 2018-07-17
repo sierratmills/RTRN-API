@@ -3,6 +3,7 @@ import { repository } from "@loopback/repository";
 import { OrderRepository } from "../repositories/Order.repository";
 import { Order } from "../models/Order";
 import { verify } from "jsonwebtoken";
+import { Item } from "../models/item";
 
 
 // Uncomment these imports to begin using these cool features!
@@ -11,6 +12,7 @@ import { verify } from "jsonwebtoken";
 
 
 export class OrderController {
+  itemRepo: any;
 
   constructor(
     @repository(OrderRepository.name) private orderRepo: OrderRepository

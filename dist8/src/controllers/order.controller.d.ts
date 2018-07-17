@@ -2,6 +2,7 @@ import { OrderRepository } from "../repositories/Order.repository";
 import { Order } from "../models/Order";
 export declare class OrderController {
     private orderRepo;
+    itemRepo: any;
     constructor(orderRepo: OrderRepository);
     verifyToken(jwt: string): any;
     getAllOrders(ordername: string): Promise<Array<Order>>;

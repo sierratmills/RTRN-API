@@ -70,7 +70,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "getAllItems", null);
 __decorate([
-    rest_1.get("/orderhistory"),
+    rest_1.get("/specificItem"),
     __param(0, rest_1.param.path.number("orderId")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),

@@ -36,7 +36,7 @@ export class OrderController {
     return await this.itemRepo.find();
   }
 
-  @get("/orderhistory")
+  @get("/specificItem")
   async getSpecificItem(
     @param.path.number("orderId") orderId: number
   ): Promise<Item[]> {

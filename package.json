@@ -33,7 +33,7 @@
     "start": "node .",
     "prepublishOnly": "npm run test",
 
-    "live": "node .",
+    "live": "db-migrate up && node .",
 
     "sierra": "DATABASE_PASSWORD=qwerty123 VARIABLE_SOMETHING=lol npm start"
   },
