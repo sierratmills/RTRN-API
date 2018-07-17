@@ -15,16 +15,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const repository_1 = require("@loopback/repository");
 const core_1 = require("@loopback/core");
 const loopback_datasource_juggler_1 = require("loopback-datasource-juggler");
-const item_1 = require("../models/item");
-let ItemRepository = class ItemRepository extends repository_1.DefaultCrudRepository {
+const order_1 = require("../models/order");
+let OrderRepository = class OrderRepository extends repository_1.DefaultCrudRepository {
     constructor(datasource) {
-        super(item_1.Item, datasource);
+        super(order_1.Order, datasource);
         this.datasource = datasource;
     }
 };
-ItemRepository = __decorate([
+OrderRepository = __decorate([
     __param(0, core_1.inject('datasources.db')),
     __metadata("design:paramtypes", [loopback_datasource_juggler_1.DataSource])
-], ItemRepository);
-exports.ItemRepository = ItemRepository;
-//# sourceMappingURL=Item.repository.js.map
+], OrderRepository);
+exports.OrderRepository = OrderRepository;
+//# sourceMappingURL=Order.repository.js.map

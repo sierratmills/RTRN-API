@@ -2,7 +2,7 @@ export * from './ping.controller';
 export * from './user.controller';
 import { get, param, requestBody, post } from "@loopback/rest";
 import { repository } from "@loopback/repository";
-import { ItemRepository } from "../repositories/Item.repository";
+import { ItemRepository } from "../repositories/item.repository";
 import { Class, Repository, RepositoryMixin, juggler } from '@loopback/repository';
 import { Item } from "../models/Item";
 

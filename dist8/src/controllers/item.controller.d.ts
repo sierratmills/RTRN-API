@@ -1,11 +1,10 @@
-export * from './ping.controller';
-export * from './user.controller';
 import { ItemRepository } from "../repositories/item.repository";
 import { Item } from "../models/Item";
-export declare class ItemController {
+export declare class OrderController {
     private itemRepo;
     constructor(itemRepo: ItemRepository);
-    getAllItems(ordername: string): Promise<Array<Item>>;
-    getSpecificItem(itemname: string): any;
+    verifyToken(jwt: string): any;
+    getAllItems(itemname: string): Promise<Array<Item>>;
+    getSpecificItem(orderId: number): Promise<Item[]>;
     createItem(item: Item): Promise<Item>;
 }

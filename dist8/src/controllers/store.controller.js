@@ -11,57 +11,60 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(require("./ping.controller"));
-__export(require("./user.controller"));
 const rest_1 = require("@loopback/rest");
 const repository_1 = require("@loopback/repository");
-const item_repository_1 = require("../repositories/item.repository");
-const Item_1 = require("../models/Item");
+const store_1 = require("../models/store");
+const store_repository_1 = require("../repositories/store.repository");
 // Uncomment these imports to begin using these cool features!
 // import {inject} from '@loopback/context';
-let ItemController = class ItemController {
-    constructor(itemRepo) {
-        this.itemRepo = itemRepo;
+let StoreController = class StoreController {
+    constructor(storeRepo) {
+        this.storeRepo = storeRepo;
     }
-    async getAllItems(ordername) {
-        return await this.itemRepo.find();
+    async getAllStores(storename) {
+        return await this.storeRepo.find();
     }
-    getSpecificItem(itemname) {
+    getSpecificStore(storeId) {
         return "Not found";
     }
-    async createItem(item) {
-        let createdItem = await this.itemRepo.create(item);
-        return createdItem;
+    async createStore(store) {
+        var storeToStore = new store_1.Store();
+        storeToStore.storename = store.storename;
+        storeToStore.storetype = store.storetype;
+        storeToStore.url = store.url;
+        storeToStore.returnurl = store.returnurl;
+        storeToStore.address = store.address;
+        storeToStore.lat = store.lat;
+        storeToStore.long = store.long;
+        storeToStore.googleid = store.googleid;
+        return await this.storeRepo.create(storeToStore);
     }
 };
 __decorate([
-    rest_1.get("/items"),
-    __param(0, rest_1.param.query.string("itemId")),
+    rest_1.get("/stores"),
+    __param(0, rest_1.param.query.string("storename")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], ItemController.prototype, "getAllItems", null);
+], StoreController.prototype, "getAllStores", null);
 __decorate([
-    rest_1.get("/item/itemname"),
-    __param(0, rest_1.param.path.string("itemname")),
+    rest_1.get("/store/storeid"),
+    __param(0, rest_1.param.path.string("storeId")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Object)
-], ItemController.prototype, "getSpecificItem", null);
+], StoreController.prototype, "getSpecificStore", null);
 __decorate([
-    rest_1.post("/item"),
+    rest_1.post("/createstore"),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Item_1.Item]),
+    __metadata("design:paramtypes", [store_1.Store]),
     __metadata("design:returntype", Promise)
-], ItemController.prototype, "createItem", null);
-ItemController = __decorate([
-    __param(0, repository_1.repository(item_repository_1.ItemRepository.name)),
-    __metadata("design:paramtypes", [item_repository_1.ItemRepository])
-], ItemController);
-exports.ItemController = ItemController;
-//# sourceMappingURL=index.js.map
+], StoreController.prototype, "createStore", null);
+StoreController = __decorate([
+    __param(0, repository_1.repository(store_repository_1.StoreRepository.name)),
+    __metadata("design:paramtypes", [store_repository_1.StoreRepository])
+], StoreController);
+exports.StoreController = StoreController;
+//# sourceMappingURL=store.controller.js.map
