@@ -55,7 +55,7 @@ exports.up = function (db, callback) {
     },
     googleid: {
       type: 'string',
-      length: 100
+      length: 4096
     }
   }, callback);
 };
