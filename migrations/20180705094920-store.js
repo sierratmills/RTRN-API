@@ -48,13 +48,12 @@ exports.up = function (db, callback) {
     returnurl: {
       type: 'string',
       length: 500
-<<<<<<< HEAD
     }, 
     userid: {
-=======
+      type: 'number',
+      length: 100
     },
     googleid: {
->>>>>>> b2e60bfaaf3f90b668bcbb2f22ecd25e907cf94b
       type: 'string',
       length: 100
     }

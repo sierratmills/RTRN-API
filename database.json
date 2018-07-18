@@ -13,11 +13,7 @@
     "host": "localhost",
     "port": "3306",
     "user": "root",
-<<<<<<< HEAD
     "password": "",
-=======
-    "password": "qwerty123",
->>>>>>> b2e60bfaaf3f90b668bcbb2f22ecd25e907cf94b
     "database": "RTRNdatabase"
   }
 }

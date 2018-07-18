@@ -51,4 +51,9 @@ export class Store extends Entity {
     })
     googleid: string;
 
+    @property({
+        type: "number",
+    })
+    userid: number;
+
 }
