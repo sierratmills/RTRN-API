@@ -38,6 +38,7 @@ let StoreController = class StoreController {
         storeToStore.lat = store.lat;
         storeToStore.long = store.long;
         storeToStore.googleid = store.googleid;
+        storeToStore.userid = store.userid;
         return await this.storeRepo.create(storeToStore);
     }
 };

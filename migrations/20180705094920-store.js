@@ -50,12 +50,12 @@ exports.up = function (db, callback) {
       length: 500
     }, 
     userid: {
-      type: 'number',
+      type: 'int',
       length: 100
     },
     googleid: {
       type: 'string',
-      length: 100
+      length: 4096
     }
   }, callback);
 };

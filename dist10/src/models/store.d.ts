@@ -8,5 +8,6 @@ export declare class Store extends Entity {
     address: string;
     lat: string;
     long: string;
-    googleid: number;
+    googleid: string;
+    userid: number;
 }
