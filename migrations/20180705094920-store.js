@@ -48,6 +48,10 @@ exports.up = function (db, callback) {
     returnurl: {
       type: 'string',
       length: 500
+    }, 
+    userid: {
+      type: 'string',
+      length: 100
     }
   }, callback);
 };
