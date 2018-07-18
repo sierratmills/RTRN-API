@@ -14,8 +14,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const rest_1 = require("@loopback/rest");
 const repository_1 = require("@loopback/repository");
-const List_repository_1 = require("../repositories/List.repository");
-const List_1 = require("../models/List");
+const list_repository_1 = require("../repositories/list.repository");
+const list_1 = require("../models/list");
 // Uncomment these imports to begin using these cool features!
 // import {inject} from '@loopback/context';
 let OrderController = class OrderController {
@@ -51,12 +51,12 @@ __decorate([
     rest_1.post("/createlist"),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [List_1.List]),
+    __metadata("design:paramtypes", [list_1.List]),
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "createList", null);
 OrderController = __decorate([
-    __param(0, repository_1.repository(List_repository_1.ListRepository.name)),
-    __metadata("design:paramtypes", [List_repository_1.ListRepository])
+    __param(0, repository_1.repository(list_repository_1.ListRepository.name)),
+    __metadata("design:paramtypes", [list_repository_1.ListRepository])
 ], OrderController);
 exports.OrderController = OrderController;
 //# sourceMappingURL=list.controller.js.map

@@ -29,14 +29,14 @@ class RTRNApiApplication extends boot_1.BootMixin(repository_1.RepositoryMixin(r
         // Use below for an in-memory database
         var dataSourceConfig = new repository_1.juggler.DataSource({
             name: "db",
-            connector: "memory",
+            connector: "loopback-connector-mysql",
             //   name: "db",
             //  connector: 'loopback-connector-mysql',
-            host: 'localhost',
-            port: 3306,
-            database: 'RTRNschema',
-            user: 'root',
-            password: 'qwerty123'
+            host: process.env.DB_HOST,
+            port: process.env.DB_PORT,
+            database: process.env.DB_DATABASE,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASSWORD
         });
         this.dataSource(dataSourceConfig);
     }

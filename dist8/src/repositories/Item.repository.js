@@ -27,4 +27,4 @@ ItemRepository = __decorate([
     __metadata("design:paramtypes", [loopback_datasource_juggler_1.DataSource])
 ], ItemRepository);
 exports.ItemRepository = ItemRepository;
-//# sourceMappingURL=Item.repository.js.map
+//# sourceMappingURL=item.repository.js.map

@@ -15,8 +15,7 @@ let Store = class Store extends repository_1.Entity {
 __decorate([
     repository_1.property({
         type: "number",
-        id: true,
-        autoincrement: true,
+        id: true
     }),
     __metadata("design:type", Number)
 ], Store.prototype, "idstore", void 0);
@@ -44,6 +43,30 @@ __decorate([
     }),
     __metadata("design:type", String)
 ], Store.prototype, "returnurl", void 0);
+__decorate([
+    repository_1.property({
+        type: "string",
+    }),
+    __metadata("design:type", String)
+], Store.prototype, "address", void 0);
+__decorate([
+    repository_1.property({
+        type: "string",
+    }),
+    __metadata("design:type", String)
+], Store.prototype, "lat", void 0);
+__decorate([
+    repository_1.property({
+        type: "string",
+    }),
+    __metadata("design:type", String)
+], Store.prototype, "long", void 0);
+__decorate([
+    repository_1.property({
+        type: "number",
+    }),
+    __metadata("design:type", Number)
+], Store.prototype, "googleid", void 0);
 Store = __decorate([
     repository_1.model({
         name: "store"

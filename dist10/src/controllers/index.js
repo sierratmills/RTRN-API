@@ -19,8 +19,8 @@ __export(require("./ping.controller"));
 __export(require("./user.controller"));
 const rest_1 = require("@loopback/rest");
 const repository_1 = require("@loopback/repository");
-const Item_repository_1 = require("../repositories/Item.repository");
-const Item_1 = require("../models/Item");
+const item_repository_1 = require("../repositories/item.repository");
+const item_1 = require("../models/item");
 // Uncomment these imports to begin using these cool features!
 // import {inject} from '@loopback/context';
 let ItemController = class ItemController {
@@ -56,12 +56,12 @@ __decorate([
     rest_1.post("/item"),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Item_1.Item]),
+    __metadata("design:paramtypes", [item_1.Item]),
     __metadata("design:returntype", Promise)
 ], ItemController.prototype, "createItem", null);
 ItemController = __decorate([
-    __param(0, repository_1.repository(Item_repository_1.ItemRepository.name)),
-    __metadata("design:paramtypes", [Item_repository_1.ItemRepository])
+    __param(0, repository_1.repository(item_repository_1.ItemRepository.name)),
+    __metadata("design:paramtypes", [item_repository_1.ItemRepository])
 ], ItemController);
 exports.ItemController = ItemController;
 //# sourceMappingURL=index.js.map

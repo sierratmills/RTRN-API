@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const rest_1 = require("@loopback/rest");
 const repository_1 = require("@loopback/repository");
 const Order_repository_1 = require("../repositories/Order.repository");
-const Order_1 = require("../models/Order");
+const order_1 = require("../models/order");
 const jsonwebtoken_1 = require("jsonwebtoken");
 // Uncomment these imports to begin using these cool features!
 // import {inject} from '@loopback/context';
@@ -51,7 +51,7 @@ let OrderController = class OrderController {
         return foundOrders;
     }
     async createOrder(order) {
-        var orderToStore = new Order_1.Order();
+        var orderToStore = new order_1.Order();
         orderToStore.price = order.price;
         orderToStore.userid = order.userid;
         orderToStore.store = order.store;
@@ -91,7 +91,7 @@ __decorate([
     rest_1.post("/createorder"),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Order_1.Order]),
+    __metadata("design:paramtypes", [order_1.Order]),
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "createOrder", null);
 OrderController = __decorate([

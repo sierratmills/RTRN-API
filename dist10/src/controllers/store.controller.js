@@ -19,18 +19,26 @@ const store_repository_1 = require("../repositories/store.repository");
 // Uncomment these imports to begin using these cool features!
 // import {inject} from '@loopback/context';
 let StoreController = class StoreController {
-    constructor(userRepo) {
-        this.userRepo = userRepo;
+    constructor(storeRepo) {
+        this.storeRepo = storeRepo;
     }
     async getAllStores(storename) {
-        return await this.userRepo.find();
+        return await this.storeRepo.find();
     }
     getSpecificStore(storeId) {
         return "Not found";
     }
     async createStore(store) {
-        let createdStore = await this.userRepo.create(store);
-        return createdStore;
+        var storeToStore = new store_1.Store();
+        storeToStore.storename = store.storename;
+        storeToStore.storetype = store.storetype;
+        storeToStore.url = store.url;
+        storeToStore.returnurl = store.returnurl;
+        storeToStore.address = store.address;
+        storeToStore.lat = store.lat;
+        storeToStore.long = store.long;
+        storeToStore.googleid = store.googleid;
+        return await this.storeRepo.create(storeToStore);
     }
 };
 __decorate([
@@ -48,7 +56,7 @@ __decorate([
     __metadata("design:returntype", Object)
 ], StoreController.prototype, "getSpecificStore", null);
 __decorate([
-    rest_1.post("/stores"),
+    rest_1.post("/createstore"),
     __param(0, rest_1.requestBody()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [store_1.Store]),

@@ -15,8 +15,12 @@ let Store = class Store extends repository_1.Entity {
 __decorate([
     repository_1.property({
         type: "number",
+<<<<<<< HEAD
         id: true,
         autoincrement: true,
+=======
+        id: true
+>>>>>>> b2e60bfaaf3f90b668bcbb2f22ecd25e907cf94b
     }),
     __metadata("design:type", Number)
 ], Store.prototype, "idstore", void 0);

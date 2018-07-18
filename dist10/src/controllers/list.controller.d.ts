@@ -1,5 +1,5 @@
-import { ListRepository } from "../repositories/List.repository";
-import { List } from "../models/List";
+import { ListRepository } from "../repositories/list.repository";
+import { List } from "../models/list";
 export declare class OrderController {
     private listRepo;
     constructor(listRepo: ListRepository);
