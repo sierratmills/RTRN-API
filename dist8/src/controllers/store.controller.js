@@ -42,11 +42,26 @@ let StoreController = class StoreController {
         storeToStore.userid = store.userid;
         return await this.storeRepo.create(storeToStore);
     }
+<<<<<<< HEAD
     async getFavoriteStores(userId) {
         let foundStores = await this.storeRepo.find({
             where: {
                 and: [
                     { userid: userId }
+=======
+    async getFavoriteStores(jwt) {
+        var payload;
+        try {
+            payload = jsonwebtoken_1.verify(jwt, "shh");
+        }
+        catch (err) {
+            throw new rest_1.HttpErrors.Unauthorized("Invalid token");
+        }
+        let foundStores = await this.storeRepo.find({
+            where: {
+                and: [
+                    { userid: payload.user.id }
+>>>>>>> 3a9c3de2c23eb5adf7348d2dba888a031bbaf8be
                 ],
             },
         });
@@ -63,11 +78,21 @@ let StoreController = class StoreController {
         let foundstore = await this.storeRepo.findOne({
             where: {
                 and: [
+<<<<<<< HEAD
                     { id: payload.store.idstore },
                 ],
             },
         });
         foundstore.userid = store.userid;
+=======
+                    { storename: store.storename,
+                        lat: store.lat,
+                        long: store.long },
+                ],
+            },
+        });
+        foundstore.userid = payload.user.id;
+>>>>>>> 3a9c3de2c23eb5adf7348d2dba888a031bbaf8be
         this.storeRepo.save(foundstore);
     }
 };
@@ -94,9 +119,15 @@ __decorate([
 ], StoreController.prototype, "createStore", null);
 __decorate([
     rest_1.get("/favoritestores"),
+<<<<<<< HEAD
     __param(0, rest_1.param.path.number("userId")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
+=======
+    __param(0, rest_1.param.query.string("jwt")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+>>>>>>> 3a9c3de2c23eb5adf7348d2dba888a031bbaf8be
     __metadata("design:returntype", Promise)
 ], StoreController.prototype, "getFavoriteStores", null);
 __decorate([

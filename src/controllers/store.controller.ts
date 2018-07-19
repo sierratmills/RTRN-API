@@ -51,12 +51,19 @@ export class StoreController {
 
   @get("/favoritestores")
   async getFavoriteStores(
-    @param.path.number("userId") userId: number
+    @param.query.string("jwt") jwt: string
   ): Promise<Store[]> {
+    var payload;
+    try {
+      payload = verify(jwt, "shh") as any;
+
+    } catch (err) {
+      throw new HttpErrors.Unauthorized("Invalid token");
+    }
     let foundStores = await this.storeRepo.find({
       where: {
         and: [
-          { userid: userId }
+          { userid: payload.user.id }
         ],
       },
     }) as Store[];
@@ -76,11 +83,13 @@ export class StoreController {
     let foundstore = await this.storeRepo.findOne({
       where: {
         and: [
-         { id: payload.store.idstore },
+         { storename: store.storename,
+           lat: store.lat,
+            long: store.long},
         ],
       },
     }) as Store;
-    foundstore.userid = store.userid;
+    foundstore.userid = payload.user.id;
     this.storeRepo.save(foundstore);
   }
 
