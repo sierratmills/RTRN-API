@@ -16,6 +16,7 @@ const rest_1 = require("@loopback/rest");
 const repository_1 = require("@loopback/repository");
 const store_1 = require("../models/store");
 const store_repository_1 = require("../repositories/store.repository");
+const jsonwebtoken_1 = require("jsonwebtoken");
 // Uncomment these imports to begin using these cool features!
 // import {inject} from '@loopback/context';
 let StoreController = class StoreController {
@@ -41,6 +42,34 @@ let StoreController = class StoreController {
         storeToStore.userid = store.userid;
         return await this.storeRepo.create(storeToStore);
     }
+    async getFavoriteStores(userId) {
+        let foundStores = await this.storeRepo.find({
+            where: {
+                and: [
+                    { userid: userId }
+                ],
+            },
+        });
+        return foundStores;
+    }
+    async addFavoriteStore(store, jwt) {
+        var payload;
+        try {
+            payload = jsonwebtoken_1.verify(jwt, "shh");
+        }
+        catch (err) {
+            throw new rest_1.HttpErrors.Unauthorized("Invalid token");
+        }
+        let foundstore = await this.storeRepo.findOne({
+            where: {
+                and: [
+                    { id: payload.store.idstore },
+                ],
+            },
+        });
+        foundstore.userid = store.userid;
+        this.storeRepo.save(foundstore);
+    }
 };
 __decorate([
     rest_1.get("/stores"),
@@ -63,6 +92,20 @@ __decorate([
     __metadata("design:paramtypes", [store_1.Store]),
     __metadata("design:returntype", Promise)
 ], StoreController.prototype, "createStore", null);
+__decorate([
+    rest_1.get("/favoritestores"),
+    __param(0, rest_1.param.path.number("userId")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], StoreController.prototype, "getFavoriteStores", null);
+__decorate([
+    rest_1.put('/addfavorite'),
+    __param(0, rest_1.requestBody()), __param(1, rest_1.param.query.string("jwt")),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [store_1.Store, String]),
+    __metadata("design:returntype", Promise)
+], StoreController.prototype, "addFavoriteStore", null);
 StoreController = __decorate([
     __param(0, repository_1.repository(store_repository_1.StoreRepository.name)),
     __metadata("design:paramtypes", [store_repository_1.StoreRepository])
