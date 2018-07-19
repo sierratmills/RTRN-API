@@ -76,11 +76,13 @@ export class StoreController {
     let foundstore = await this.storeRepo.findOne({
       where: {
         and: [
-         { id: payload.store.idstore },
+         { storename: store.storename,
+           lat: store.lat,
+            long: store.long},
         ],
       },
     }) as Store;
-    foundstore.userid = store.userid;
+    foundstore.userid = payload.user.id;
     this.storeRepo.save(foundstore);
   }
 
