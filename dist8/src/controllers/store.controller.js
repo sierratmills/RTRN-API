@@ -42,11 +42,18 @@ let StoreController = class StoreController {
         storeToStore.userid = store.userid;
         return await this.storeRepo.create(storeToStore);
     }
-    async getFavoriteStores(userId) {
+    async getFavoriteStores(jwt) {
+        var payload;
+        try {
+            payload = jsonwebtoken_1.verify(jwt, "shh");
+        }
+        catch (err) {
+            throw new rest_1.HttpErrors.Unauthorized("Invalid token");
+        }
         let foundStores = await this.storeRepo.find({
             where: {
                 and: [
-                    { userid: userId }
+                    { userid: payload.user.id }
                 ],
             },
         });
@@ -96,9 +103,9 @@ __decorate([
 ], StoreController.prototype, "createStore", null);
 __decorate([
     rest_1.get("/favoritestores"),
-    __param(0, rest_1.param.path.number("userId")),
+    __param(0, rest_1.param.query.string("jwt")),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], StoreController.prototype, "getFavoriteStores", null);
 __decorate([
