@@ -6,10 +6,6 @@ export declare class StoreController {
     getAllStores(storename: string): Promise<Array<Store>>;
     getSpecificStore(storeId: string): any;
     createStore(store: Store): Promise<Store>;
-<<<<<<< HEAD
-    getFavoriteStores(userId: number): Promise<Store[]>;
-=======
     getFavoriteStores(jwt: string): Promise<Store[]>;
->>>>>>> 3a9c3de2c23eb5adf7348d2dba888a031bbaf8be
     addFavoriteStore(store: Store, jwt: string): Promise<void>;
 }
