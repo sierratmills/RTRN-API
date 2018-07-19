@@ -51,12 +51,19 @@ export class StoreController {
 
   @get("/favoritestores")
   async getFavoriteStores(
-    @param.path.number("userId") userId: number
+    @param.query.string("jwt") jwt: string
   ): Promise<Store[]> {
+    var payload;
+    try {
+      payload = verify(jwt, "shh") as any;
+
+    } catch (err) {
+      throw new HttpErrors.Unauthorized("Invalid token");
+    }
     let foundStores = await this.storeRepo.find({
       where: {
         and: [
-          { userid: userId }
+          { userid: payload.user.id }
         ],
       },
     }) as Store[];
